@@ -1,1 +1,1 @@
-ung dung điều khiển tài chính
+#ung dung quản lý tài chính
