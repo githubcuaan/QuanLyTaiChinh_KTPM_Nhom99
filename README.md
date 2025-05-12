@@ -1,2 +1,1 @@
-# Game-taixiu
-do den
+ung dung điều khiển tài chính
