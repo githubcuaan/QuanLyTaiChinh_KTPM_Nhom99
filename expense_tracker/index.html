@@ -6,6 +6,7 @@
     <title>Quản lý tài chính</title>
 
     <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/sumaryStyle.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="icon" href="./assets/icon/icons8-money-bag-50.png" />
   </head>
@@ -44,34 +45,79 @@
           </div>
         </div>
 
+        <hr>
+
         <div class="sumary-content">
           <!-- tổng quan -->
-          <div class="total">
-            <div class="card">Tổng số dư</div>
-            <div class="card">Tổng thu nhập</div>
-            <div class="card">Tổng chi tiêu</div>
+          <div class="total container">
+            <div class="card content">
+              <p>Tổng số dư</p>
+              <h2>0.00</h2>
+            </div>
+            <div class="card content">
+              <p>Tổng thu nhập</p>
+              <h2>0.00</h2>  
+            </div>
+            <div class="card content">
+              <p>Tổng chi tiêu</p>
+              <h2>0.00</h2>
+            </div>
           </div>
 
           <!-- biểu đồ -->
-          <div class="charts">
-            <div class="chart" id="pie">pie chart</div>
-            <div class="chart" id="bar">bar chart</div>
+          <div class="charts container">
+            <div class="chart content" id="pie">pie chart</div>
+            <div class="chart content" id="bar">bar chart</div>
           </div>
 
           <!-- 6 hũ tài chính -->
-           <div class="jars">
-            <div class="jar"></div>
-            <div class="jar"></div>
-            <div class="jar"></div>
-            <div class="jar"></div>
-            <div class="jar"></div>
-            <div class="jar"></div>
+           <div class="jars content container">
+            <div class="jar">
+              <img src="./assets/icon/jars/icons8-home-50.png" alt="">
+              <p>Thiết Yếu</p>
+              <strong>0.00</strong>
+              <span>0%</span>
+            </div>
+            <div class`="jar">
+              <img src="./assets/icon/jars/icons8-money-bag-48.png" alt="">
+              <p>Tự Do Tài Chính</p>
+              <strong>0.00</strong>
+              <span>0%</span>
+            </div>
+            <div class="jar">
+              <img src="./assets/icon/jars/icons8-books-50.png" alt="">
+              <p>Giáo Dục</p>
+              <strong>0.00</strong>
+              <span>0%</span>
+            </div>
+            <div class="jar">
+              <img src="./assets/icon/jars/icons8-pub-50.png" alt="">
+              <p>Hưởng Thụ</p>
+              <strong>0.00</strong>
+              <span>0%</span>
+            </div>
+            <div class="jar">
+              <img src="./assets/icon/jars/icons8-gift-50.png" alt="">
+              <p>Thiện Tâm</p>
+              <strong>0.00</strong>
+              <span>0%</span>
+            </div>
+            <div class="jar">
+              <img src="./assets/icon/jars/icons8-saving-money-50.png" alt="">
+              <p>Tiết Kiệm</p>
+              <strong>0.00</strong>
+              <span>0%</span>
+            </div>
            </div>
         </div>
       </section>
 
-      <!-- footer -->
-      <footer></footer>
+      <hr>
+
     </main>
+    <!-- footer -->
+    <footer>
+      <p>Quản lý chi tiêu 6 hũ 2025 - Phát triển bởi nhóm 99</p>
+    </footer>
   </body>
 </html>

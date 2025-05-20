@@ -29,6 +29,7 @@ main {
 
 nav {
   width: 15%;
+  min-width: 150px;
   border-right: 2px solid rgba(0, 0, 0, 0.1);
 }
 
@@ -62,3 +63,6 @@ nav li i {
   margin-right: 8px;
 }
 
+hr {
+  margin: 10px 0;
+}
