@@ -11,9 +11,15 @@ section {
     align-items: center;
 }
 
+
 .filter {
 
 }
+
+.filter .active {
+    background: #70aae5;
+    color: white;
+  }
 
 .filter button {
     /* margin-right: -10px; */
@@ -22,6 +28,11 @@ section {
     background-color: #e0e0e0;
     border-radius: 6px;
     cursor: pointer;
+}
+
+
+.sumary-head h1 {
+    color: #70aae5;
 }
 
 .sumary-content {

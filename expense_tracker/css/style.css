@@ -11,7 +11,7 @@ body {
 }
 
 header {
-  background-color: #4e9ae6;
+  background-color: #70aae5;
   color: #fff;
   padding: 8px 12px;
   display: flex;
@@ -27,7 +27,7 @@ header .header-icon {
 
 main {
   display: flex;
-  height: 100vh;
+  height: 89.8vh;
 }
 
 nav {
