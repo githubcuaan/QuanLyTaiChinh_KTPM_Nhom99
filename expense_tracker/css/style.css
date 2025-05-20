@@ -32,6 +32,11 @@ nav {
   border-right: 2px solid rgba(0, 0, 0, 0.1);
 }
 
+nav ul {
+  list-style: none;
+  padding-top: 20px;
+}
+
 nav a {
   display: flex;
   align-items: center;
@@ -42,14 +47,19 @@ nav a {
 }
 
 nav a:hover {
+  background-color: #f0f0f0;  
+}
+
+nav a:active {
   background: #e6f0fa;
   color: #007bff;
   font-weight: bold;
   border-left: 4px solid #007bff;
 }
 
-section {
-  padding: 20px;
-  background-color: #f0ebeb;
-  width: 100%;
+
+nav a i {
+  padding-bottom: 2px ;
+  margin-right: 8px;
 }
+
