@@ -1,16 +1,12 @@
- body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f5f7fa;
-    }
-    header {
+
+    .header-chitieu {
       background-color: #fff;
       color: #70aae5;
       padding: 16px 20px;
       font-size: 20px;
       font-weight: bold;
     }
-    .container {
+    .container-chitieu {
       padding: 20px;
     }
     .top-bar {
@@ -38,14 +34,14 @@
       border: 1px solid #ccc;
       border-radius: 20px;
     }
-    table {
+    .table-chitieu {
       width: 100%;
       border-collapse: collapse;
       background-color: white;
       border-radius: 8px;
       overflow: hidden;
     }
-    thead {
+    .thead-chitieu {
       background-color: #eaf4ff;
     }
     th, td {
