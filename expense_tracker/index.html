@@ -153,8 +153,49 @@
             </div>
             <button class="add-button">+ Thêm chi tiêu</button>
           </div>
-
-          
+          <table class="table-chitieu">
+            <thead class="thead-chitieu">
+              <tr>
+                <th>Ngày</th>
+                <th>Hũ</th>
+                <th>Mô tả</th>
+                <th>Số tiền</th>
+                <th>Hành động</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>10/04/2025</td>
+                <td class="category"><img src="./assets/icon/jars/icons8-books-50.png" class="category-icon"/>Giáo Dục</td>
+                <td>Ghi chú</td>
+                <td>25.000 đ</td>
+                <td class="actions">
+                  <button onclick="editRow()">✏️</button>
+                  <button onclick="deleteRow(this)">🗑️</button>
+                </td>
+              </tr>
+              <tr>
+                <td>10/04/2025</td>
+                <td class="category"><img src="https://img.icons8.com/color/48/heart-health.png" class="category-icon"/>Thiết Yếu</td>
+                <td>Tiền điện nước</td>
+                <td>100.000 đ</td>
+                <td class="actions">
+                  <button onclick="editRow()">✏️</button>
+                  <button onclick="deleteRow(this)">🗑️</button>
+                </td>
+              </tr>
+              <tr>
+                <td>10/04/2025</td>
+                <td class="category"><img src="./assets/icon/jars/icons8-gift-50.png" class="category-icon"/>thiện tâm </td>
+                <td>gửi tặng</td>
+                <td>25.000 đ</td>
+                <td class="actions">
+                  <button onclick="editRow()">✏️</button>
+                  <button onclick="deleteRow(this)">🗑️</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>     
         </div>
       </section>
     </main>
