@@ -52,6 +52,37 @@ section {
     gap: 20px;
 }
 
+.card {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+}
+
+.icon-circle {
+    background-color: #ccc;
+    padding: 16px 20px;
+    border-radius: 50%;
+    margin-right: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-circle i {
+    color: #70aae5;
+    font-size: 30px;
+}
+
+.collum-ctn {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.collum-ctn p {
+    color: #656565;
+}
+
 .jars {
     justify-content: space-around;
     flex-wrap: wrap;
