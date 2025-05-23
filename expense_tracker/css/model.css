@@ -32,3 +32,123 @@
     transform: translate(-50%, -50%);
     transition: transform 0.3s ease;
 }
+
+/* Form styles */
+.form-control {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.form-control:disabled {
+    background-color: #f5f5f5;
+    cursor: not-allowed;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    color: #333;
+    font-weight: 500;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.btn-primary {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #45a049;
+}
+
+.btn-secondary {
+    background-color: #f44336;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #da190b;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+}
+
+.modal-content h2 {
+    color: #333;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+.modal-content p {
+    margin: 10px 0;
+    color: #555;
+}
+
+.modal-content strong {
+    color: #333;
+}
+
+.spend-from-jar {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+    width: 100%;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.spend-from-jar:hover {
+    background-color: #45a049;
+}
+
+/* Make jars clickable */
+.jar {
+    cursor: pointer;
+    transition: transform 0.2s;
+    pointer-events: auto;
+    position: relative;
+    z-index: 1;
+}
+
+.jar:hover {
+    transform: scale(1.05);
+}
+
+.jar * {
+    pointer-events: none;
+} 
