@@ -138,6 +138,68 @@
            </div>
         </div>
       </section>
+
+      <!-- Section Thu Nhập -->
+      <section class="thunhap" id="thunhap" style="display: none;">
+        <div class="thunhap-container">
+          <!-- Phần HEADER không nền trắng -->
+          <div class="thunhap-header-box">
+            <div class="thunhap-page-header">
+              <h2>Quản lý thu nhập</h2>
+              <button class="thunhap-add-btn">+ Thêm thu nhập</button>
+            </div>
+            <hr class="thunhap-divider" />
+          </div>
+
+          <!-- Bộ lọc + tìm kiếm -->
+          <div class="thunhap-box">
+            <div class="thunhap-controls">
+              <div class="thunhap-filter-bar">
+                <button class="thunhap-btn active">Tháng này</button>
+                <button class="thunhap-btn">Quý này</button>
+                <button class="thunhap-btn">Năm nay</button>
+                <button class="thunhap-btn">Tùy chỉnh</button>
+              </div>
+              <input type="text" class="thunhap-search-box" placeholder="Tìm kiếm mô tả..." />
+            </div>
+          </div>
+
+          <!-- Bảng thu nhập -->
+          <div class="thunhap-box">
+            <table class="thunhap-table">
+              <thead>
+                <tr>
+                  <th>Ngày</th>
+                  <th>Mô tả</th>
+                  <th>Số tiền</th>
+                  <th>Hành động</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>09/04/2025</td>
+                  <td>Thưởng</td>
+                  <td>2.000.000 đ</td>
+                  <td>
+                    <button class="thunhap-action-btn">✏️</button>
+                    <button class="thunhap-action-btn">🗑️</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>08/04/2025</td>
+                  <td>Lương tháng 4</td>
+                  <td>600.000 đ</td>
+                  <td>
+                    <button class="thunhap-action-btn">✏️</button>
+                    <button class="thunhap-action-btn">🗑️</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      
       <!-- section chi tieu -->
        <section class="chitieu" id="chitieu" style="display: none;">
         <header class="header-chitieu">Quản lý chi tiêu</header>
