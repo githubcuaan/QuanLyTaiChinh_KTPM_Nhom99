@@ -1,6 +1,7 @@
 // Get all sections and navigation items
 const sections = {
     'sumary': document.getElementById('sumary'),
+    'thunhap': document.getElementById('thunhap'),
     'chitieu': document.getElementById('chitieu'),
     'jar-config-section': document.getElementById('jar-config-section')
 };
@@ -24,7 +25,7 @@ navItems.forEach((item, index) => {
         });
         
         // Show the selected section
-        const sectionIds = ['sumary', 'chitieu', 'jar-config-section'];
+        const sectionIds = ['sumary', 'thunhap', 'chitieu', 'jar-config-section'];
         const selectedSection = sections[sectionIds[index]];
         if (selectedSection) {
             selectedSection.style.display = 'block';
