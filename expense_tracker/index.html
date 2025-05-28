@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="./css/thunhap.css">
     <!-- model css -->
     <link rel="stylesheet" href="./css/model.css">
+    <!-- chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="icon" href="./assets/icon/icons8-money-bag-50.png" />
 
@@ -94,8 +96,12 @@
 
           <!-- biểu đồ -->
           <div class="charts container">
-            <div class="chart content" id="pie">pie chart</div>
-            <div class="chart content" id="bar">bar chart</div>
+            <div class="chart content" id="pie">
+              <canvas id="pieChart"></canvas>  
+            </div>
+            <div class="chart content" id="bar">
+              <canvas id="barChart"></canvas>
+            </div>
           </div>
 
           <!-- 6 hũ tài chính -->
@@ -455,5 +461,6 @@
 
     <script src="./js/main.js"></script>
     <script src="./js/modal.js"></script>
+    <script src="./js/chart.js"></script>
   </body>
 </html>

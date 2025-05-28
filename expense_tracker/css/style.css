@@ -195,8 +195,20 @@ nav ul li.active i {
     border-radius: 12px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     min-height: 300px;
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+.chart canvas {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 350px;
+    max-height: 350px;
+}
 /* Jars section */
 .jars {
     background-color: white;
