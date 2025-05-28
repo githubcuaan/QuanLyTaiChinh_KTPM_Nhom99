@@ -82,3 +82,73 @@ const pieChart = new Chart(ctx, {
         }
     }
 }); 
+
+// Tạo biểu đồ cột 
+const barCtx = document.getElementById('barChart').getContext('2d');
+const barChart = new Chart(barCtx, 
+    {
+        type: 'bar',
+        data: {
+            labels: ['Thu nhập', 'Chi tiêu'],
+            datasets: [{
+                data: [0,0],
+                backgroundColor: [
+                    '#36A2EB', // Màu xanh dương cho thu nhập
+                    '#FF6384'  // Màu hồng cho chi tiêu
+                ],
+                borderWidth: 2,
+                borderColor: '#fff',
+                borderRadius: 5,
+                barThickness: 40  
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            layout: {
+                padding: {
+                    top: 20,
+                    bottom: 20
+                }
+            },
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Thu nhập và Chi tiêu',
+                    font: {
+                        size: 16,
+                        weight: 'bold'
+                    },
+                    padding: {
+                        top: 10,
+                        bottom: 20
+                    }
+                },
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            const value = context.raw || 0;
+                            return `${value.toLocaleString('vi-VN')} đ`;
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        callback: function(value) {
+                            return value.toLocaleString('vi-VN') + ' đ';
+                        }
+                    }
+                }
+            },
+            animation: {
+                animateScale: true,
+                animateRotate: true
+            }
+        }
+    }); 
