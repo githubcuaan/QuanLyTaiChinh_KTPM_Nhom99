@@ -6,7 +6,7 @@
     $dbname = "jfins";
 
     //2. Tạo kết nối PDO
-    $conn = new PDO("mysql:host= $servername, dbname = $dbname, charset = utf8mb4", $username, $password);
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8mb4", $username, $password);
 
     //3. Cấu hình cho kết nối
     // Thiết lập chế độ báo lỗi
