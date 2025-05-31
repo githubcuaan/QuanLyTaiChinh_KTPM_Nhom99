@@ -152,16 +152,3 @@ label {
 .jar * {
     pointer-events: none;
 }
-/* Thêm vào cuối file */
-.btn-danger {
-  background-color: #ff4757 !important;
-  color: white !important;
-}
-
-.btn-danger:hover {
-  background-color: #e03131 !important;
-}
-
-#confirm-delete-input {
-  margin-top: 10px;
-}
