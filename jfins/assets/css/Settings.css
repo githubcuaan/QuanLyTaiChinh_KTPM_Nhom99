@@ -242,3 +242,16 @@
   transform: scale(1.05);
   box-shadow: 0 4px 15px rgba(112, 170, 229, 0.3);
 }
+/* Thêm vào cuối file */
+.btn-danger {
+  background-color: #ff4757 !important;
+  color: white !important;
+}
+
+.btn-danger:hover {
+  background-color: #e03131 !important;
+}
+
+#confirm-delete-input {
+  margin-top: 10px;
+}
