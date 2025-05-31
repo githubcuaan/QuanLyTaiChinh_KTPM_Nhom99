@@ -5,7 +5,7 @@
     z-index: 1000;
     left: 0;
     top: 0;
-    width: 100%;
+  width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     opacity: 0;
@@ -25,7 +25,7 @@
     border: 1px solid #888;
     width: 90%;
     max-width: 500px;
-    border-radius: 8px;
+  border-radius: 8px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -52,11 +52,11 @@ label {
     display: block;
     margin-top: 10px;
     color: #333;
-    font-weight: 500;
+  font-weight: 500;
 }
 
 .form-actions {
-    display: flex;
+  display: flex;
     justify-content: flex-end;
     gap: 10px;
     margin-top: 20px;
@@ -73,7 +73,7 @@ label {
 
 .btn-primary {
     background-color: #4CAF50;
-    color: white;
+  color: white;
 }
 
 .btn-primary:hover {
@@ -121,11 +121,11 @@ label {
 
 .spend-from-jar {
     background-color: #4CAF50;
-    color: white;
+  color: white;
     padding: 10px 20px;
-    border: none;
+  border: none;
     border-radius: 4px;
-    cursor: pointer;
+  cursor: pointer;
     margin-top: 20px;
     width: 100%;
     font-size: 16px;
@@ -138,7 +138,7 @@ label {
 
 /* Make jars clickable */
 .jar {
-    cursor: pointer;
+  cursor: pointer;
     transition: transform 0.2s;
     pointer-events: auto;
     position: relative;
@@ -146,9 +146,22 @@ label {
 }
 
 .jar:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 .jar * {
     pointer-events: none;
-} 
+}
+/* Thêm vào cuối file */
+.btn-danger {
+  background-color: #ff4757 !important;
+  color: white !important;
+}
+
+.btn-danger:hover {
+  background-color: #e03131 !important;
+}
+
+#confirm-delete-input {
+  margin-top: 10px;
+}
