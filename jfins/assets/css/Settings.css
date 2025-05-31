@@ -204,3 +204,23 @@
   50% { border-color: #ff8787; }
   100% { border-color: #ff6b6b; }
 }
+
+.jar-icon {
+  width: 32px;
+  height: 32px;
+}
+.jar-header {
+  gap: 8px; 
+}
+.jar-name {
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+.btn-danger {
+  background: #ff4757 !important;
+}
+
+.btn-danger:hover {
+  background: #e03131 !important;
+}
