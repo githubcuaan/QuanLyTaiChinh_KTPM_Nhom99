@@ -204,3 +204,41 @@
   50% { border-color: #ff8787; }
   100% { border-color: #ff6b6b; }
 }
+
+.jar-icon {
+  width: 32px;
+  height: 32px;
+}
+.jar-header {
+  gap: 8px; 
+}
+.jar-name {
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+.btn-danger {
+  background: #ff4757 !important;
+}
+
+.btn-danger:hover {
+  background: #e03131 !important;
+}
+.save-config-btn {
+  background: #70aae5;
+  color: white;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  transform: scale(1);
+}
+.save-config-btn:hover {
+  background: #5c97d1;
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(112, 170, 229, 0.3);
+}

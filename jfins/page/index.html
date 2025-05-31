@@ -290,8 +290,8 @@
               <!-- Hũ 1 -->
               <div class="jar-item">
                 <div class="jar-header">
-                  <input type="checkbox" checked disabled class="jar-checkbox">
-                  <img src="../assets/icon/jars/icons8-home-48.png" alt="">
+                  
+                  <div><img src="../assets/icon/jars/icons8-home-48.png" alt="" class="jar-icon"></div>
                   <span class="jar-name">Thiết Yếu</span>
                 </div>
                 <div class="jar-control">
@@ -302,8 +302,8 @@
               <!-- Hũ 2 -->
               <div class="jar-item">
                 <div class="jar-header">
-                  <input type="checkbox" checked disabled class="jar-checkbox">
-                  <img src="../assets/icon/jars/icons8-money-bag-48.png" alt="">
+                  
+                  <div><img src="../assets/icon/jars/icons8-money-bag-48.png" alt="" class="jar-icon"></div>
                   <span class="jar-name">Tự Do Tài Chính</span>
                 </div>
                 <div class="jar-control">
@@ -315,8 +315,8 @@
               <!-- Hũ 3 -->
               <div class="jar-item">
                 <div class="jar-header">
-                  <input type="checkbox" checked disabled class="jar-checkbox">
-                  <img src="../assets/icon/jars/icons8-books-50.png" alt="">
+                  
+                  <div><img src="../assets/icon/jars/icons8-books-50.png" alt="" class="jar-icon"></div>
                   <span class="jar-name">Giáo Dục</span>
                 </div>
                 <div class="jar-control">
@@ -330,8 +330,8 @@
               <!-- Hũ 4 -->
               <div class="jar-item">
                 <div class="jar-header">
-                  <input type="checkbox" checked disabled class="jar-checkbox">
-                  <img src="../assets/icon/jars/icons8-pub-50.png" alt="">
+                  
+                  <div><img src="../assets/icon/jars/icons8-pub-50.png" alt="" class="jar-icon"></div>
                   <span class="jar-name"> Hưởng Thụ </span>
                 </div>
                 <div class="jar-control">
@@ -342,8 +342,8 @@
               <!-- Hũ 5 -->
               <div class="jar-item">
                 <div class="jar-header">
-                  <input type="checkbox" checked disabled class="jar-checkbox">
-                  <img src="../assets/icon/jars/icons8-gift-50.png" alt="">
+                  
+                  <div><img src="../assets/icon/jars/icons8-gift-50.png" alt="" class="jar-icon"></div>
                   <span class="jar-name">Thiện Tâm</span>
                 </div>
                 <div class="jar-control">
@@ -354,8 +354,8 @@
               <!-- Hũ 6 -->
               <div class="jar-item">
                 <div class="jar-header">
-                  <input type="checkbox" checked disabled class="jar-checkbox">
-                  <img src="../assets/icon/jars/icons8-saving-money-64.png" style="width: 50px;" alt="">
+                  
+                  <div><img src="../assets/icon/jars/icons8-saving-money-64.png" alt="" class="jar-icon"></div>
                   <span class="jar-name">Tiết Kiệm</span>
                 </div>
                 <div class="jar-control">
@@ -419,7 +419,21 @@
         <button class="spend-from-jar">Chi tiêu từ hũ này</button>
       </div>
     </div>
-
+    <!-- Thêm sau các modal khác -->
+     <!-- Modal Xác nhận xóa dữ liệu -->
+      <div id="deleteConfirmModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>Xác nhận xóa dữ liệu</h2>
+          <p>Bạn có chắc chắn muốn xóa tất cả dữ liệu không?<br>Hành động này không thể hoàn tác!</p>
+          <label for="confirm-delete-input">Nhập "XÓA" để xác nhận</label>
+          <input type="text" id="confirm-delete-input" class="form-control" placeholder="XÓA">
+          <div class="form-actions" style="margin-top: 20px;">
+            <button id="cancel-delete-btn" class="btn btn-secondary">Hủy</button>
+            <button id="confirm-delete-btn" class="btn btn-danger" disabled>Xóa tất cả</button>
+          </div>
+        </div>
+      </div>
     <!-- Form Thêm Khoản Chi Tiêu -->
     <div id="expense-form-container" class="modal">
       <div class="modal-content">

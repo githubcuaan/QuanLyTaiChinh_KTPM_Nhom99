@@ -127,3 +127,77 @@ document.addEventListener('DOMContentLoaded', function() {
         hideModal(expenseModal);
     });
 }); 
+const deleteConfirmModal = document.getElementById('deleteConfirmModal');
+const confirmDeleteBtn = document.getElementById('confirm-delete-btn');
+const cancelDeleteBtn = document.getElementById('cancel-delete-btn');
+const confirmDeleteInput = document.getElementById('confirm-delete-input');
+const closeDeleteModal = deleteConfirmModal.querySelector('.close');
+const deleteAllBtn = document.querySelector('.delete-btn:enabled'); // Nút xóa chính
+
+// Hàm mở modal xác nhận xóa
+function openDeleteConfirmModal() {
+  deleteConfirmModal.classList.add('show');
+}
+
+// Hàm đóng modal xác nhận xóa
+function closeDeleteConfirmModal() {
+  deleteConfirmModal.classList.remove('show');
+  confirmDeleteInput.value = '';
+  confirmDeleteBtn.disabled = true;
+}
+
+// Sự kiện khi người dùng nhập vào ô xác nhận
+confirmDeleteInput.addEventListener('input', function() {
+  if (this.value.trim().toUpperCase() === 'XÓA') {
+    confirmDeleteBtn.disabled = false;
+  } else {
+    confirmDeleteBtn.disabled = true;
+  }
+});
+
+// Sự kiện khi nhấn nút Xóa tất cả
+confirmDeleteBtn.addEventListener('click', function() {
+  // Gọi hàm xử lý xóa dữ liệu thực tế ở đây
+  deleteAllData();
+  closeDeleteConfirmModal();
+});
+
+// Sự kiện khi nhấn nút Hủy hoặc nút đóng
+cancelDeleteBtn.addEventListener('click', closeDeleteConfirmModal);
+closeDeleteModal.addEventListener('click', closeDeleteConfirmModal);
+
+// Sự kiện click bên ngoài modal để đóng
+window.addEventListener('click', function(event) {
+  if (event.target === deleteConfirmModal) {
+    closeDeleteConfirmModal();
+  }
+});
+
+// Kết nối với nút xóa chính
+if (deleteAllBtn) {
+  deleteAllBtn.addEventListener('click', openDeleteConfirmModal);
+}
+// Hàm xử lý khi checkbox xác nhận thay đổi
+const dangerCheckbox = document.querySelector('.danger-checkbox');
+const deleteBtn = document.querySelector('.delete-btn');
+
+dangerCheckbox.addEventListener('change', function() {
+  deleteBtn.disabled = !this.checked;
+  
+  // Khi enabled, thêm sự kiện click
+  if (!this.checked) {
+    deleteBtn.removeEventListener('click', openDeleteConfirmModal);
+  } else {
+    deleteBtn.addEventListener('click', openDeleteConfirmModal);
+  }
+});
+
+// Hàm xóa dữ liệu (ví dụ)
+function deleteAllData() {
+  // Thực hiện xóa dữ liệu ở đây
+  alert('Đã xóa toàn bộ dữ liệu!');
+  
+  // Reset checkbox và nút
+  dangerCheckbox.checked = false;
+  deleteBtn.disabled = true;
+}
