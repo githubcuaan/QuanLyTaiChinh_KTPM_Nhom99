@@ -1,6 +1,7 @@
 .thunhap-container {
-  max-width: 950px;
   margin: auto;
+  background-color: #f5f5f5;
+  flex: 1;
 }
 
 .thunhap-header-box {
@@ -13,33 +14,39 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 2rem;
 }
 
-.thunhap-page-header h2 {
+.thunhap-page-header h1 {
   margin: 0;
-  color: #0073e6;
+  color: #70aae5;
+  font-size: 1.8rem;
 }
 
 .thunhap-add-btn {
-  background: #0073e6;
+  background: #70aae5;
   color: white;
   border: none;
   padding: 10px 16px;
   border-radius: 25px;
   cursor: pointer;
   font-weight: bold;
+  transition: all 0.3s;
+}
+
+.thunhap-add-btn:hover {
+  transform: scale(1.02);
+  box-shadow: 0 2px 4px rgba(112, 170, 229, 0.3);
 }
 
 .thunhap-divider {
-  border: 0;
-  border-bottom: 1px solid #e0e0e0;
-  margin-top: 12px;
+  
 }
 
 .thunhap-box {
   background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   padding: 20px 24px;
   margin-bottom: 20px;
 }
@@ -59,15 +66,20 @@
 }
 
 .thunhap-btn {
-  background-color: #f0f0f0;
+  background-color: #fff;
   border: none;
   padding: 8px 14px;
-  border-radius: 4px;
+  border-radius: 20px;
   cursor: pointer;
+  transition: all 0.3s;
+}
+
+.thunhap-btn:hover {
+  transform: scale(1.02);
 }
 
 .thunhap-btn.active {
-  background-color: #0073e6;
+  background-color: #70aae5;
   color: white;
 }
 
@@ -101,4 +113,30 @@
   font-size: 16px;
   cursor: pointer;
   margin-right: 5px;
+  transition: all 0.3s;
+}
+
+.thunhap-action-btn:hover {
+  transform: scale(1.1);
+  color: #70aae5;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .thunhap-controls {
+    flex-direction: column;
+  }
+  
+  .thunhap-filter-bar {
+    justify-content: center;
+  }
+  
+  .thunhap-search-box {
+    width: 100%;
+  }
+  
+  .thunhap-table {
+    display: block;
+    overflow-x: auto;
+  }
 } 
