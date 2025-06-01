@@ -213,66 +213,71 @@
         <header class="header-chitieu">Quản lý chi tiêu</header>
 
         <div class="container-chitieu">
-          <div class="top-bar">
-            <div class="pagination">
-              <button onclick="prevPage()">&larr;</button>
-              <span>Trang 1/2</span>
+            <div class="top-bar">
+                <div class="pagination">
+                    <button onclick="prevPage()">&larr;</button>
+                    <span>Trang 1/2</span>
+                </div>
+                <div class="filter-buttons">
+                    <button class="active">Tháng này</button>
+                    <button>Quý này</button>
+                    <button>Năm nay</button>
+                    <button>Tùy chỉnh</button>
+                </div>
+                <div class="search-bar-chitieu">
+                    <i class="fa-solid fa-search search-icon"></i>
+                    <input type="text" placeholder="Tìm kiếm mô tả..." id="search-input">
+                    <button class="search-btn" onclick="performSearch()">
+                        <i class="fa-solid fa-search"></i>
+                        Tìm
+                    </button>
+                </div>
+                <button class="add-button" onclick="openExpenseForm()">+ Thêm chi tiêu</button>
             </div>
-            <div class="filter-buttons">
-              <button class="active">Tháng này</button>
-              <button>Quý này</button>
-              <button>Năm nay</button>
-              <button>Tùy chỉnh</button>
-            </div>
-            <div class="search-bar-chitieu">
-              <input type="text" placeholder="Tìm kiếm mô tả...">
-            </div>
-            <button class="add-button">+ Thêm chi tiêu</button>
-          </div>
-          <table class="table-chitieu">
-            <thead class="thead-chitieu">
-              <tr>
-                <th>Ngày</th>
-                <th>Hũ</th>
-                <th>Mô tả</th>
-                <th>Số tiền</th>
-                <th>Hành động</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>10/04/2025</td>
+            <table class="table-chitieu">
+                <thead class="thead-chitieu">
+                    <tr>
+                        <th>Ngày</th>
+                        <th>Hũ</th>
+                        <th>Mô tả</th>
+                        <th>Số tiền</th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>10/04/2025</td>
                 <td class="category"><img src="../assets/icon/jars/icons8-books-50.png" class="category-icon"/>Giáo Dục</td>
                 <td>Ghi chú</td>
                 <td>25.000 đ</td>
-                <td class="actions">
+                        <td class="actions">
                   <button onclick="editRow()">✏️</button>
                   <button onclick="deleteRow(this)">🗑️</button>
-                </td>
-              </tr>
-              <tr>
+                        </td>
+                    </tr>
+                    <tr>
                 <td>10/04/2025</td>
                 <td class="category"><img src="https://img.icons8.com/color/48/heart-health.png" class="category-icon"/>Thiết Yếu</td>
-                <td>Tiền điện nước</td>
+                        <td>Tiền điện nước</td>
                 <td>100.000 đ</td>
-                <td class="actions">
+                        <td class="actions">
                   <button onclick="editRow()">✏️</button>
                   <button onclick="deleteRow(this)">🗑️</button>
-                </td>
-              </tr>
-              <tr>
+                        </td>
+                    </tr>
+                    <tr>
                 <td>10/04/2025</td>
                 <td class="category"><img src="../assets/icon/jars/icons8-gift-50.png" class="category-icon"/>thiện tâm </td>
                 <td>gửi tặng</td>
                 <td>25.000 đ</td>
-                <td class="actions">
+                        <td class="actions">
                   <button onclick="editRow()">✏️</button>
                   <button onclick="deleteRow(this)">🗑️</button>
-                </td>
-              </tr>
-            </tbody>
-          </table>     
-        </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </div>
       </section>
       <!-- Section cài đặt -->
       <section class="jar-config-section" id="jar-config-section" style="display: none;">
@@ -417,6 +422,49 @@
         <button class="spend-from-jar">Chi tiêu từ hũ này</button>
       </div>
     </div>
+    <!-- modal của chi tiêu -->
+    <div class="expense-form-overlay" id="expenseFormOverlay">
+      <div class="expense-form-modal">
+        <div class="expense-form-header">
+          <h2>Thêm khoản chi tiêu</h2>
+          <button class="expense-close-btn" onclick="closeExpenseForm()">&times;</button>
+        </div>
+        
+        <div class="expense-form-body">
+          <div class="expense-form-group">
+            <label for="expense-date">Ngày</label>
+            <input type="date" id="expense-date" class="expense-form-control">
+          </div>
+          
+          <div class="expense-form-group">
+            <label for="expense-jar">Hũ</label>
+            <select id="expense-jar" class="expense-form-control">
+              <option value="" disabled selected>-- Chọn hũ --</option>
+              <option value="thietyeu">Thiết Yếu</option>
+              <option value="tudotaichinh">Tự Do Tài Chính</option>
+              <option value="giaoduc">Giáo Dục</option>
+              <option value="huongthu">Hưởng Thụ</option>
+              <option value="thientam">Thiện Tâm</option>
+              <option value="tietkiem">Tiết Kiệm</option>
+            </select>
+          </div>
+          <div class="expense-form-group">
+            <label for="expense-amount">Số tiền</label>
+            <input type="number" id="expense-amount" class="expense-form-control" placeholder="Nhập số tiền" min="0">
+          </div>
+          
+          <div class="expense-form-group">
+            <label for="expense-description">Mô tả</label>
+            <input type="text" id="expense-description" class="expense-form-control" placeholder="Nhập mô tả khoản chi tiêu">
+          </div>
+        </div>
+        
+        <div class="expense-form-actions">
+          <button class="expense-btn expense-btn-cancel" onclick="closeExpenseForm()">Hủy</button>
+          <button class="expense-btn expense-btn-save" onclick="saveExpense()">Lưu</button>
+        </div>
+      </div>
+    </div>
     <!-- Thêm sau các modal khác -->
      <!-- Modal Xác nhận xóa dữ liệu -->
       <div id="deleteConfirmModal" class="modal">
@@ -432,47 +480,6 @@
           </div>
         </div>
       </div>
-    <!-- Form Thêm Khoản Chi Tiêu -->
-    <div id="expense-form-container" class="modal">
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2>Thêm khoản chi tiêu</h2>
-
-        <!-- Ngày -->
-        <label for="expense-date">Ngày:</label>
-        <input type="date" id="expense-date" class="form-control" required>
-
-        <!-- Hũ -->
-        <label for="expense-jar-select">Hũ:</label>
-        <select id="expense-jar-select" class="form-control" required>
-          <option value="jar-thietyeu">🏠 Thiết yếu</option>
-          <option value="jar-tudotaichinh">💰 Tự Do Tài Chính</option>
-          <option value="jar-giaoduc">📘 Giáo Dục</option>
-          <option value="jar-huongthu">🎉 Hưởng Thụ</option>
-          <option value="jar-thientam">🎁 Thiện Tâm</option>
-          <option value="jar-tietkiem">📋 Tiết Kiệm</option>
-        </select>
-
-        <!-- Số dư của hũ (chỉ hiển thị, không cho chỉnh sửa) -->
-        <label for="ex pense-jar-balance">Số dư:</label>
-        <input type="text" id="expense-jar-balance" class="form-control" disabled>
-
-        <!-- Số tiền chi tiêu -->
-        <label for="expense-amount">Số tiền:</label>
-        <input type="number" id="expense-amount" class="form-control" placeholder="Nhập số tiền" min="0" required>
-
-        <!-- Mô tả -->
-        <label for="expense-description">Mô tả:</label>
-        <input type="text" id="expense-description" class="form-control" placeholder="Nhập mô tả khoản chi tiêu">
-
-        <!-- Nút Hủy và Lưu -->
-        <div class="form-actions">
-          <button type="button" id="cancel-expense" class="btn btn-secondary">Hủy</button>
-          <button type="submit" id="save-expense" class="btn btn-primary">Lưu</button>
-        </div>
-      </div>
-    </div>
-
     <script src="../assets/js/main.js"></script>
     <script src="../assets/js/modal.js"></script>
     <script src="../assets/js/chart.js"></script>
