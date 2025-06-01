@@ -474,9 +474,36 @@
       </div>
     </div>
 
+    <!-- Form Thêm Khoản Thu Nhập -->
+    <div id="income-form-container" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Thêm khoản thu nhập</h2>
+
+        <!-- Ngày -->
+        <label for="income-date">Ngày:</label>
+        <input type="date" id="income-date" class="form-control" required>
+
+        <!-- Số tiền -->
+        <label for="income-amount">Số tiền:</label>
+        <input type="number" id="income-amount" class="form-control" placeholder="Nhập số tiền" min="0" required>
+
+        <!-- Mô tả -->
+        <label for="income-description">Mô tả:</label>
+        <input type="text" id="income-description" class="form-control" placeholder="Nhập mô tả khoản thu nhập">
+
+        <!-- Nút Hủy và Lưu -->
+        <div class="form-actions">
+          <button type="button" id="cancel-income" class="btn btn-secondary">Hủy</button>
+          <button type="submit" id="save-income" class="btn btn-primary">Lưu</button>
+        </div>
+      </div>
+    </div>
+
     <script src="../assets/js/main.js"></script>
     <script src="../assets/js/modal.js"></script>
     <script src="../assets/js/chart.js"></script>
     <script src="../assets/js/expense.js"></script>
+    <script src="../assets/js/income.js"></script>
   </body>
 </html>
