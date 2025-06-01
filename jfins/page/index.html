@@ -150,10 +150,9 @@
       <!-- Section Thu Nhập -->
       <section class="thunhap" id="thunhap" style="display: none;">
         <div class="thunhap-container">
-          <!-- Phần HEADER không nền trắng -->
           <div class="thunhap-header-box">
             <div class="thunhap-page-header">
-              <h2>Quản lý thu nhập</h2>
+              <h1>Quản lý thu nhập</h1>
               <button class="thunhap-add-btn">+ Thêm thu nhập</button>
             </div>
             <hr class="thunhap-divider" />
@@ -210,8 +209,10 @@
       
       <!-- section chi tieu -->
        <section class="chitieu" id="chitieu" style="display: none;">
-        <header class="header-chitieu">Quản lý chi tiêu</header>
-
+        <div class="chitieu-head">
+          <h1 class="header-chitieu">Quản lý chi tiêu</h1>
+        </div>
+        <hr>
         <div class="container-chitieu">
             <div class="top-bar">
                 <div class="pagination">
@@ -480,8 +481,80 @@
           </div>
         </div>
       </div>
+<<<<<<< HEAD
+=======
+    <!-- Form Thêm Khoản Chi Tiêu -->
+    <div id="expense-form-container" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Thêm khoản chi tiêu</h2>
+
+        <!-- Ngày -->
+        <label for="expense-date">Ngày:</label>
+        <input type="date" id="expense-date" class="form-control" required>
+
+        <!-- Hũ -->
+        <label for="expense-jar-select">Hũ:</label>
+        <select id="expense-jar-select" class="form-control" required>
+          <option value="jar-thietyeu">🏠 Thiết yếu</option>
+          <option value="jar-tudotaichinh">💰 Tự Do Tài Chính</option>
+          <option value="jar-giaoduc">📘 Giáo Dục</option>
+          <option value="jar-huongthu">🎉 Hưởng Thụ</option>
+          <option value="jar-thientam">🎁 Thiện Tâm</option>
+          <option value="jar-tietkiem">📋 Tiết Kiệm</option>
+        </select>
+
+        <!-- Số dư của hũ (chỉ hiển thị, không cho chỉnh sửa) -->
+        <label for="ex pense-jar-balance">Số dư:</label>
+        <input type="text" id="expense-jar-balance" class="form-control" disabled>
+
+        <!-- Số tiền chi tiêu -->
+        <label for="expense-amount">Số tiền:</label>
+        <input type="number" id="expense-amount" class="form-control" placeholder="Nhập số tiền" min="0" required>
+
+        <!-- Mô tả -->
+        <label for="expense-description">Mô tả:</label>
+        <input type="text" id="expense-description" class="form-control" placeholder="Nhập mô tả khoản chi tiêu">
+
+        <!-- Nút Hủy và Lưu -->
+        <div class="form-actions">
+          <button type="button" id="cancel-expense" class="btn btn-secondary">Hủy</button>
+          <button type="submit" id="save-expense" class="btn btn-primary">Lưu</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Form Thêm Khoản Thu Nhập -->
+    <div id="income-form-container" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Thêm khoản thu nhập</h2>
+
+        <!-- Ngày -->
+        <label for="income-date">Ngày:</label>
+        <input type="date" id="income-date" class="form-control" required>
+
+        <!-- Số tiền -->
+        <label for="income-amount">Số tiền:</label>
+        <input type="number" id="income-amount" class="form-control" placeholder="Nhập số tiền" min="0" required>
+
+        <!-- Mô tả -->
+        <label for="income-description">Mô tả:</label>
+        <input type="text" id="income-description" class="form-control" placeholder="Nhập mô tả khoản thu nhập">
+
+        <!-- Nút Hủy và Lưu -->
+        <div class="form-actions">
+          <button type="button" id="cancel-income" class="btn btn-secondary">Hủy</button>
+          <button type="submit" id="save-income" class="btn btn-primary">Lưu</button>
+        </div>
+      </div>
+    </div>
+
+>>>>>>> 1db9830bf77255f30cae66959f38db4a7a3cea68
     <script src="../assets/js/main.js"></script>
     <script src="../assets/js/modal.js"></script>
     <script src="../assets/js/chart.js"></script>
+    <script src="../assets/js/expense.js"></script>
+    <script src="../assets/js/income.js"></script>
   </body>
 </html>
