@@ -54,22 +54,26 @@
 
 ## 🗂️ Cấu trúc thư mục
 expense-tracker-6hu/
-├── index.html # Trang tổng quan
-├── login.html # Đăng nhập
-├── register.html # Đăng ký
-├── income.html # Thu nhập
-├── expense.html # Chi tiêu
-├── settings.html # Cài đặt
+├── index.html              # Trang tổng quan (dashboard)
+├── login.html              # Trang đăng nhập
+├── register.html           # Trang đăng ký
+├── income.html             # Trang quản lý thu nhập
+├── expense.html            # Trang quản lý chi tiêu
+├── settings.html           # Trang cài đặt tỷ lệ hũ
 ├── css/
-│ └── style.css # Giao diện chung
+│   └── style.css           # File CSS chính cho toàn bộ giao diện
 ├── js/
-│ ├── auth.js # Xử lý xác thực
-│ ├── storage.js # Tương tác localStorage
-│ ├── dashboard.js # Hiển thị dashboard
-│ ├── income.js # Logic thu nhập
-│ ├── expense.js # Logic chi tiêu
-│ ├── settings.js # Logic cài đặt
-│ └── utils.js # Hàm tiện ích
-└── assets/
-└── icons/ # Hình ảnh và biểu tượng
+│   ├── auth.js             # Xử lý đăng nhập / đăng ký
+│   ├── storage.js          # Quản lý dữ liệu với localStorage
+│   ├── dashboard.js        # Hiển thị và xử lý dashboard
+│   ├── income.js           # Logic thêm/sửa/xóa thu nhập
+│   ├── expense.js          # Logic thêm/sửa/xóa chi tiêu
+│   ├── settings.js         # Tùy chỉnh tỷ lệ 6 hũ và reset dữ liệu
+│   └── utils.js            # Hàm tiện ích (định dạng, lọc thời gian, tạo ID...)
+├── assets/
+│   └── icons/              # Thư mục chứa các icon minh họa cho từng hũ
+│       ├── icons8-books-50.png
+│       ├── icons8-gift-50.png
+│       └── ...             # Các biểu tượng khác cho UI
+└── README.md               # Tài liệu hướng dẫn dự án (nếu có)
 
