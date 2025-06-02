@@ -54,3 +54,32 @@
 
 ## 🗂️ Cấu trúc thư mục
 <pre> expense-tracker-6hu/ ├── index.html ← Trang tổng quan ├── login.html ← Trang đăng nhập ├── register.html ← Trang đăng ký ├── income.html ← Quản lý thu nhập ├── expense.html ← Quản lý chi tiêu ├── settings.html ← Trang cài đặt ├── css/ │ └── style.css ← Giao diện chung ├── js/ │ ├── auth.js ← Xử lý đăng nhập/đăng ký │ ├── storage.js ← Hàm tương tác localStorage │ ├── dashboard.js ← Hiển thị tổng quan │ ├── income.js ← Xử lý thu nhập │ ├── expense.js ← Xử lý chi tiêu │ ├── settings.js ← Xử lý tỷ lệ 6 hũ và reset │ └── utils.js ← Hàm tiện ích chung ├── assets/ │ └── icons/ ← Icon UI (nếu có) │ ├── icons8-books-50.png │ ├── icons8-gift-50.png │ └── ... (biểu tượng khác) └── README.md ← Tài liệu hướng dẫn dự án </pre>
+## 🛠️ Cài đặt & chạy ứng dụng
+
+```bash
+git clone https://github.com/your-username/expense-tracker-6hu.git
+cd expense-tracker-6hu
+# Mở file index.html bằng trình duyệt hoặc dùng Live Server
+```
+
+## 🔮 Kế hoạch mở rộng
+
+- Tích hợp biểu đồ thống kê (Chart.js, D3.js)
+- Đồng bộ với backend (Firebase, Supabase,...)
+- Xuất dữ liệu ra Excel/PDF
+- Responsive / PWA mobile-friendly
+
+## 🤝 Đóng góp
+
+1. Fork dự án
+2. Tạo branch mới: `git checkout -b new-feature`
+3. Commit: `git commit -m "Add new feature"`
+4. Push: `git push origin new-feature`
+5. Mở Pull Request
+
+## 📄 License
+
+MIT License © 2025
+
+> “Hãy để mỗi đồng tiền bạn chi ra phản ánh đúng giá trị của nó.”
+
