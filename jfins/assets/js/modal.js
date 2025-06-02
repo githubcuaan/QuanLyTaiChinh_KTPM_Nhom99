@@ -201,38 +201,4 @@ function deleteAllData() {
   dangerCheckbox.checked = false;
   deleteBtn.disabled = true;
 }
-      document.addEventListener('DOMContentLoaded', function() {
-        const today = new Date().toISOString().split('T')[0];
-        document.getElementById('expense-date').value = today;
-      });
 
-      // Hàm mở form thêm chi tiêu
-      function openExpenseForm() {
-        const overlay = document.getElementById('expenseFormOverlay');
-        overlay.style.display = 'flex';
-        setTimeout(() => {
-          overlay.classList.add('show');
-        }, 10);
-      }
-
-      // Hàm đóng form thêm chi tiêu
-      function closeExpenseForm() {
-        const overlay = document.getElementById('expenseFormOverlay');
-        overlay.classList.remove('show');
-        setTimeout(() => {
-          overlay.style.display = 'none';
-          // Reset form
-          document.getElementById('expense-date').value = new Date().toISOString().split('T')[0];
-          document.getElementById('expense-jar').value = '';
-          document.getElementById('expense-amount').value = '';
-          document.getElementById('expense-description').value = '';
-        }, 300);
-      }
-
-      // Hàm lưu chi tiêu
-      function saveExpense() {
-        const date = document.getElementById('expense-date').value;
-        const jar = document.getElementById('expense-jar').value;
-        const amount = document.getElementById('expense-amount').value;
-        const description = document.getElementById('expense-description').value;
-      }

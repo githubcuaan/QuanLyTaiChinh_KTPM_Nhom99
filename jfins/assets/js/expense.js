@@ -20,12 +20,19 @@ function openExpenseModal() {
 }
 
 //3. Function để đóng
-function closeExpenseModal() {
-    expenseModal.classList.remove('show');
+// Hàm đóng form thêm chi tiêu
+function closeExpenseForm() {
+    const overlay = document.getElementById('expenseFormOverlay');
+    overlay.classList.remove('show');
     setTimeout(() => {
-        expenseModal.style.display = 'none';
-    }, 300); // Match this with CSS transition duration
-}
+      overlay.style.display = 'none';
+      // Reset form
+      document.getElementById('expense-date').value = new Date().toISOString().split('T')[0];
+      document.getElementById('expense-jar').value = '';
+      document.getElementById('expense-amount').value = '';
+      document.getElementById('expense-description').value = '';
+    }, 300);
+  }
 
 //4. sử dụng các hàm bằng event listeners
 // Event listeners
@@ -40,3 +47,11 @@ window.addEventListener('click', (event) => {
         closeExpenseModal();
     }
 });
+
+// Hàm lưu chi tiêu
+function saveExpense() {
+    const date = document.getElementById('expense-date').value;
+    const jar = document.getElementById('expense-jar').value;
+    const amount = document.getElementById('expense-amount').value;
+    const description = document.getElementById('expense-description').value;
+  }
