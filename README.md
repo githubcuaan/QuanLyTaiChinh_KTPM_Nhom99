@@ -3,6 +3,14 @@
 Ứng dụng quản lý tài chính cá nhân theo **phương pháp 6 hũ tài chính** – một công cụ đơn giản, trực quan giúp bạn kiểm soát thu nhập và chi tiêu một cách hiệu quả, minh bạch và bền vững.
 
 ---
+## 👥 Thành viên nhóm
+
+Dự án được thực hiện bởi các thành viên:
+
+- 🐶 Phạm Lê Đình An
+- 🧑 Hà Lê Quang Minh
+- 🧑 Nguyễn Duy Anh Tuấn
+- 🧑 Nguyễn Đức Tuấn
 
 ## 📚 Giới thiệu
 
@@ -61,7 +69,6 @@ Nếu bạn có bất kỳ câu hỏi, góp ý hoặc muốn hợp tác phát tr
 - 📧 Email: nhom99@gmail.com
 - 🌐 Website: https://nhom99.com
 - 🐙 GitHub: https://github.com/githubcuaan/QuanLyTaiChinh_KTPM_Nhom99
-"""
 
 ## 📄 License
 
