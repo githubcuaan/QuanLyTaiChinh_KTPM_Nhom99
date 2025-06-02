@@ -278,7 +278,16 @@
                     </tr>
                 </tbody>
             </table>
-    </div>
+            </div>
+            <script>
+                function deleteRow(button) {
+                if (confirm("Bạn có chắc muốn xóa mục chi tiêu này không?")) {
+                const row = button.closest("tr");
+            row.remove();
+            }
+             }
+          </script>
+
       </section>
       <!-- Section cài đặt -->
       <section class="jar-config-section" id="jar-config-section" style="display: none;">
