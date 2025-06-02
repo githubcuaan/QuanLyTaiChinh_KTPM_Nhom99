@@ -59,9 +59,34 @@ Dự án được thực hiện bởi các thành viên:
 - Đặt lại mật khẩu (tuỳ chọn mở rộng)
 
 ---
-
 ## 🗂️ Cấu trúc thư mục
-<pre> expense-tracker-6hu/ ├── index.html ← Trang tổng quan ├── login.html ← Trang đăng nhập ├── register.html ← Trang đăng ký ├── income.html ← Quản lý thu nhập ├── expense.html ← Quản lý chi tiêu ├── settings.html ← Trang cài đặt ├── css/ │ └── style.css ← Giao diện chung ├── js/ │ ├── auth.js ← Xử lý đăng nhập/đăng ký │ ├── storage.js ← Hàm tương tác localStorage │ ├── dashboard.js ← Hiển thị tổng quan │ ├── income.js ← Xử lý thu nhập │ ├── expense.js ← Xử lý chi tiêu │ ├── settings.js ← Xử lý tỷ lệ 6 hũ và reset │ └── utils.js ← Hàm tiện ích chung ├── assets/ │ └── icons/ ← Icon UI (nếu có) │ ├── icons8-books-50.png │ ├── icons8-gift-50.png │ └── ... (biểu tượng khác) └── README.md ← Tài liệu hướng dẫn dự án </pre>
+
+~~~
+expense-tracker-6hu/
+├── index.html           ← Trang tổng quan
+├── login.html           ← Trang đăng nhập
+├── register.html        ← Trang đăng ký
+├── income.html          ← Quản lý thu nhập
+├── expense.html         ← Quản lý chi tiêu
+├── settings.html        ← Trang cài đặt
+├── css/
+│   └── style.css        ← Giao diện chung
+├── js/
+│   ├── auth.js          ← Xử lý đăng nhập/đăng ký
+│   ├── storage.js       ← Hàm tương tác localStorage
+│   ├── dashboard.js     ← Hiển thị tổng quan
+│   ├── income.js        ← Xử lý thu nhập
+│   ├── expense.js       ← Xử lý chi tiêu
+│   ├── settings.js      ← Xử lý tỷ lệ 6 hũ và reset
+│   └── utils.js         ← Hàm tiện ích chung
+├── assets/
+│   └── icons/           ← Icon UI (nếu có)
+│       ├── icons8-books-50.png
+│       ├── icons8-gift-50.png
+│       └── ... (biểu tượng khác)
+└── README.md            ← Tài liệu hướng dẫn dự án
+~~~
+
 ## 📬 Liên hệ
 
 Nếu bạn có bất kỳ câu hỏi, góp ý hoặc muốn hợp tác phát triển dự án, vui lòng liên hệ qua:
