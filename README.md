@@ -53,4 +53,23 @@
 ---
 
 ## 🗂️ Cấu trúc thư mục
+expense-tracker-6hu/
+├── index.html # Trang tổng quan
+├── login.html # Đăng nhập
+├── register.html # Đăng ký
+├── income.html # Thu nhập
+├── expense.html # Chi tiêu
+├── settings.html # Cài đặt
+├── css/
+│ └── style.css # Giao diện chung
+├── js/
+│ ├── auth.js # Xử lý xác thực
+│ ├── storage.js # Tương tác localStorage
+│ ├── dashboard.js # Hiển thị dashboard
+│ ├── income.js # Logic thu nhập
+│ ├── expense.js # Logic chi tiêu
+│ ├── settings.js # Logic cài đặt
+│ └── utils.js # Hàm tiện ích
+└── assets/
+└── icons/ # Hình ảnh và biểu tượng
 
