@@ -63,6 +63,14 @@ window.addEventListener('click', (event) => {
     }
 });
 
+// Hàm mở form sửa chi tiêu
+function openExpenseEditForm() {
+    expenseEditModal.style.display = 'block';
+    setTimeout(() => {
+        expenseEditModal.classList.add('show');
+    }, 10);
+}
+
 // Hàm lưu chi tiêu
 function saveExpense() {
     const date = document.getElementById('expense-date').value;
