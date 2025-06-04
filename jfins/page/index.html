@@ -228,10 +228,6 @@
                 <div class="search-bar-chitieu">
                     <i class="fa-solid fa-search search-icon"></i>
                     <input type="text" placeholder="Tìm kiếm mô tả..." id="search-input">
-                    <button class="search-btn" onclick="performSearch()">
-                        <i class="fa-solid fa-search"></i>
-                        Tìm
-                    </button>
                 </div>
                 <button class="add-button" onclick="openExpenseForm()">+ Thêm chi tiêu</button>
             </div>
@@ -538,6 +534,43 @@
         <div class="form-actions">
           <button type="button" id="cancel-edit-income" class="btn btn-secondary">Hủy</button>
           <button type="submit" id="save-edit-income" class="btn btn-primary">Lưu thay đổi</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Form Sửa Khoản Chi Tiêu -->
+    <div id="expense-edit-container" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Sửa khoản chi tiêu</h2>
+
+        <!-- Ngày -->
+        <label for="edit-expense-date">Ngày:</label>
+        <input type="date" id="edit-expense-date" class="form-control" required>
+
+        <!-- Hũ -->
+        <label for="edit-expense-jar-select">Hũ:</label>
+        <select id="edit-expense-jar-select" class="form-control" required>
+          <option value="jar-thietyeu">🏠 Thiết yếu</option>
+          <option value="jar-tudotaichinh">💰 Tự Do Tài Chính</option>
+          <option value="jar-giaoduc">📘 Giáo Dục</option>
+          <option value="jar-huongthu">🎉 Hưởng Thụ</option>
+          <option value="jar-thientam">🎁 Thiện Tâm</option>
+          <option value="jar-tietkiem">📋 Tiết Kiệm</option>
+        </select>
+
+        <!-- Số tiền -->
+        <label for="edit-expense-amount">Số tiền:</label>
+        <input type="number" id="edit-expense-amount" class="form-control" placeholder="Nhập số tiền" min="0" required>
+
+        <!-- Mô tả -->
+        <label for="edit-expense-description">Mô tả:</label>
+        <input type="text" id="edit-expense-description" class="form-control" placeholder="Nhập mô tả khoản chi tiêu">
+
+        <!-- Nút Hủy và Lưu -->
+        <div class="form-actions">
+          <button type="button" id="cancel-edit-expense" class="btn btn-secondary">Hủy</button>
+          <button type="submit" id="save-edit-expense" class="btn btn-primary">Lưu thay đổi</button>
         </div>
       </div>
     </div>
