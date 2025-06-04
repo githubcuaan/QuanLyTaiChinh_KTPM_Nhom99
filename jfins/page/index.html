@@ -188,8 +188,8 @@
                   <td>Thưởng</td>
                   <td>2.000.000 đ</td>
                   <td>
-                    <button class="thunhap-action-btn">✏️</button>
-                    <button class="thunhap-action-btn">🗑️</button>
+                    <button id="income-edit-btn" class="thunhap-action-btn">✏️</button>
+                    <button id="income-delete-btn" class="thunhap-action-btn">🗑️</button>
                   </td>
                 </tr>
                 <tr>
@@ -197,8 +197,8 @@
                   <td>Lương tháng 4</td>
                   <td>600.000 đ</td>
                   <td>
-                    <button class="thunhap-action-btn">✏️</button>
-                    <button class="thunhap-action-btn">🗑️</button>
+                    <button id="income-edit-btn" class="thunhap-action-btn">✏️</button>
+                    <button id="income-delete-btn" class="thunhap-action-btn">🗑️</button>
                   </td>
                 </tr>
               </tbody>
@@ -252,8 +252,8 @@
                 <td>Ghi chú</td>
                 <td>25.000 đ</td>
                         <td class="actions">
-                  <button onclick="editRow()">✏️</button>
-                  <button onclick="deleteRow(this)">🗑️</button>
+                  <button id="expense-edit-btn" onclick="editRow()">✏️</button>
+                  <button id="expense-delete-btn" onclick="deleteRow(this)">🗑️</button>
                         </td>
                     </tr>
                     <tr>
@@ -262,8 +262,8 @@
                         <td>Tiền điện nước</td>
                 <td>100.000 đ</td>
                         <td class="actions">
-                  <button onclick="editRow()">✏️</button>
-                  <button onclick="deleteRow(this)">🗑️</button>
+                  <button id="expense-edit-btn" onclick="editRow()">✏️</button>
+                  <button id="expense-delete-btn" onclick="deleteRow(this)">🗑️</button>
                         </td>
                     </tr>
                     <tr>
@@ -272,8 +272,8 @@
                 <td>gửi tặng</td>
                 <td>25.000 đ</td>
                         <td class="actions">
-                  <button onclick="editRow()">✏️</button>
-                  <button onclick="deleteRow(this)">🗑️</button>
+                  <button id="expense-edit-btn" onclick="editRow()">✏️</button>
+                  <button id="expense-delete-btn" onclick="deleteRow(this)">🗑️</button>
                         </td>
                     </tr>
                 </tbody>
@@ -515,6 +515,33 @@
           </div>
         </div>
       </div>
+
+    <!-- Form Sửa Khoản Thu Nhập -->
+    <div id="income-edit-container" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Sửa khoản thu nhập</h2>
+
+        <!-- Ngày -->
+        <label for="edit-income-date">Ngày:</label>
+        <input type="date" id="edit-income-date" class="form-control" required>
+
+        <!-- Số tiền -->
+        <label for="edit-income-amount">Số tiền:</label>
+        <input type="number" id="edit-income-amount" class="form-control" placeholder="Nhập số tiền" min="0" required>
+
+        <!-- Mô tả -->
+        <label for="edit-income-description">Mô tả:</label>
+        <input type="text" id="edit-income-description" class="form-control" placeholder="Nhập mô tả khoản thu nhập">
+
+        <!-- Nút Hủy và Lưu -->
+        <div class="form-actions">
+          <button type="button" id="cancel-edit-income" class="btn btn-secondary">Hủy</button>
+          <button type="submit" id="save-edit-income" class="btn btn-primary">Lưu thay đổi</button>
+        </div>
+      </div>
+    </div>
+
     <script src="../assets/js/main.js"></script>
     <script src="../assets/js/modal.js"></script>
     <script src="../assets/js/chart.js"></script>
