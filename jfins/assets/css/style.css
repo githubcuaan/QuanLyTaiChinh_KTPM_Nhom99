@@ -22,6 +22,7 @@ header {
     align-items: center;
     gap: 1rem;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: relative;
 }
 
 .header-icon {
@@ -32,6 +33,70 @@ header {
 .header-title {
     font-size: 1.5rem;
     font-weight: bold;
+    flex: 1;
+}
+
+/* User profile styles */
+.user-profile {
+    position: relative;
+    margin-left: auto;
+}
+
+.profile-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 70px;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.profile-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    min-width: 200px;
+    display: none;
+    z-index: 1000;
+}
+
+.user-profile:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    width: 100%;
+    border: none;
+    background: none;
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-align: left;
+}
+
+.dropdown-item:hover {
+    background-color: #f5f5f5;
+}
+
+.dropdown-item i {
+    width: 20px;
+    color: #70aae5;
 }
 
 /* Main layout */
