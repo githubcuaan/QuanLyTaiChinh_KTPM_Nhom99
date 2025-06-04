@@ -1,4 +1,5 @@
 //1. Get DOM elements
+// Profile elements
 const profileModal = document.getElementById('profile-modal');
 const profileBtn = document.getElementById('profile-btn');
 const profileCloseBtns = document.querySelectorAll('#profile-modal .close');
@@ -6,6 +7,13 @@ const cancelProfileBtn = document.getElementById('cancel-profile');
 const saveProfileBtn = document.getElementById('save-profile');
 const changeAvatarBtn = document.querySelector('.change-avatar-btn');
 const profileAvatarImg = document.getElementById('profile-avatar-img');
+
+// Logout elements
+const logoutModal = document.getElementById('logout-modal');
+const logoutBtn = document.getElementById('logout-btn');
+const logoutCloseBtns = document.querySelectorAll('#logout-modal .close');
+const cancelLogoutBtn = document.getElementById('cancel-logout');
+const confirmLogoutBtn = document.getElementById('confirm-logout');
 
 //2. Function to open profile modal
 function openProfileModal() {
@@ -27,7 +35,28 @@ function closeProfileModal() {
     }
 }
 
+//4. Function to open logout modal
+function openLogoutModal() {
+    if (logoutModal) {
+        logoutModal.style.display = 'block';
+        logoutModal.classList.add('show');
+    }
+}
 
+//5. Function to close logout modal
+function closeLogoutModal() {
+    if (logoutModal) {
+        logoutModal.classList.remove('show');
+        logoutModal.style.display = 'none';
+    }
+}
+
+//6. Function to handle logout
+function handleLogout() {
+    // Here you would typically make an API call to logout
+    // For now, we'll just redirect to login page
+    window.location.href = 'login.html';
+}
 
 // Initialize event listeners
 function initializeProfileModal() {
@@ -59,6 +88,30 @@ function initializeProfileModal() {
         }
     });
 
+    // Logout button click
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            openLogoutModal();
+        });
+    }
+
+    // Close buttons for logout modal
+    logoutCloseBtns.forEach(btn => {
+        btn.addEventListener('click', closeLogoutModal);
+    });
+
+    // Cancel button for logout modal
+    if (cancelLogoutBtn) {
+        cancelLogoutBtn.addEventListener('click', closeLogoutModal);
+    }
+
+    // Close logout modal when clicking outside
+    window.addEventListener('click', (event) => {
+        if (event.target === logoutModal) {
+            closeLogoutModal();
+        }
+    });
 
     // Handle save password
     if (saveProfileBtn) {
@@ -69,6 +122,11 @@ function initializeProfileModal() {
                 closeProfileModal();
             }
         });
+    }
+
+    // Confirm logout button
+    if (confirmLogoutBtn) {
+        confirmLogoutBtn.addEventListener('click', handleLogout);
     }
 }
 
