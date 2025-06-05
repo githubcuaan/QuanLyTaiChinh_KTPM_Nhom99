@@ -14,7 +14,7 @@
   <body>
     <div class="container" id="container">
       <div class="form-container sign-up">
-        <form action="signin.php" method="POST">
+        <form action="signin.php" method="POST" id="signupForm">
           <h1>Tạo tài khoản</h1>
           <div class="social-icons">
             <a href="#" class="icon"
