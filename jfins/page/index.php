@@ -50,6 +50,8 @@
         style="width: 40px"
       />
       <p class="header-title">JFINs - Quản lý tài chính</p>
+      
+      <!-- user-profile -->
       <div class="user-profile">
         <button class="profile-btn">
           <i class="fa-solid fa-user"></i>
