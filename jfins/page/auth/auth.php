@@ -14,7 +14,7 @@
   <body>
     <div class="container" id="container">
       <div class="form-container sign-up">
-        <form>
+        <form action="signin.php" method="POST">
           <h1>Tạo tài khoản</h1>
           <div class="social-icons">
             <a href="#" class="icon"
@@ -34,7 +34,7 @@
         </form>
       </div>
       <div class="form-container sign-in">
-        <form>
+        <form action="login.php" method="POST" id="loginForm"> 
           <h1>Đăng nhập</h1>
           <div class="social-icons">
             <a href="#" class="icon"
