@@ -53,14 +53,16 @@ function closeLogoutModal() {
 
 //6. Function to handle logout
 function handleLogout() {
-    
+    window.location.href = './auth/logout.php';
 }
 
-// Initialize event listeners
+// Khởi tạo profilemodel
 function initializeProfileModal() {
     console.log('Initializing profile modal');
-    
-    // Profile button click
+
+    // * Cho phần profile
+
+    // nút profile -> mở profile model
     if (profileBtn) {
         console.log('Adding click listener to profile button');
         profileBtn.addEventListener('click', (e) => {
@@ -86,7 +88,20 @@ function initializeProfileModal() {
         }
     });
 
-    // Logout button click
+    // Handle save password
+    if (saveProfileBtn) {
+        saveProfileBtn.addEventListener('click', () => {
+            if (validatePassword()) {
+                // Here you would typically make an API call to change the password
+                alert('Mật khẩu đã được thay đổi thành công!');
+                closeProfileModal();
+            }
+        });
+    }
+
+    // * Cho phần logout
+
+    // Logout button click -> mở logout modelmodel
     if (logoutBtn) {
         logoutBtn.addEventListener('click', (e) => {
             e.preventDefault();
@@ -110,18 +125,7 @@ function initializeProfileModal() {
             closeLogoutModal();
         }
     });
-
-    // Handle save password
-    if (saveProfileBtn) {
-        saveProfileBtn.addEventListener('click', () => {
-            if (validatePassword()) {
-                // Here you would typically make an API call to change the password
-                alert('Mật khẩu đã được thay đổi thành công!');
-                closeProfileModal();
-            }
-        });
-    }
-
+    
     // Confirm logout button
     if (confirmLogoutBtn) {
         confirmLogoutBtn.addEventListener('click', handleLogout);
