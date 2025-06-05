@@ -55,7 +55,7 @@
       <div class="user-profile">
         <button class="profile-btn">
           <i class="fa-solid fa-user"></i>
-          <p>username</p>
+          <p class="username"><?php echo htmlspecialchars($_SESSION['username']); ?></p>
         </button>
         <div class="dropdown-menu">
           <button class="dropdown-item" id="profile-btn">
@@ -68,6 +68,7 @@
           </button>
         </div>
       </div>
+      
     </header>
 
     <!-- main -->
