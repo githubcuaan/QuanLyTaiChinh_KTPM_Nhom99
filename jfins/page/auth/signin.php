@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Kiểm tra nhập liệu
     if (!isset($_POST['username']) || !isset($_POST['email']) || 
         !isset($_POST['password']) || !isset($_POST['confirm_password'])) {
-        $error = "Vui lòng điền đầy đủ thông tin";
+        $signup_error = "Vui lòng điền đầy đủ thông tin";
     } else {
         $username = $_POST['username'];
         $email = $_POST['email'];
@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         // kiểm tra mật khẩu xác nhận
         if ($confirmpassword != $password) {
-            $error = "Mật khẩu xác nhận không khớp";
+            $signup_error = "Mật khẩu xác nhận không khớp";
         } else {
             try {
                 // Kiểm tra email đã tồn tại chưa
@@ -25,9 +25,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $check_stmt->bindParam(':email', $email);
                 $check_stmt->execute();
 
-                // nếu tồn tại email
+                // nếu email đã tồn tại
                 if ($check_stmt->rowCount() > 0) {
-                    $error = "Email đã được sử dụng";
+                    $signup_error = "Email đã được sử dụng";
                 } else {
                     try {
                         // Mã hóa mật khẩu
@@ -48,18 +48,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             header("Location: ../index.php");
                             exit();
                         } else {
-                            $error = "Có lỗi xảy ra, vui lòng thử lại";
+                            $signup_error = "Có lỗi xảy ra, vui lòng thử lại";
                         }
                     } catch (PDOException $e) {
                         if ($e->getCode() == 23000) {
-                            $error = "Email đã được sử dụng";
+                            $signup_error = "Email đã được sử dụng";
                         } else {
-                            $error = "Có lỗi xảy ra: " . $e->getMessage();
+                            $signup_error = "Có lỗi xảy ra: " . $e->getMessage();
                         }
                     }
                 }
             } catch (PDOException $e) {
-                $error ="Có lỗi xảy ra: ". $e->getMessage();
+                $signup_error = "Có lỗi xảy ra: ". $e->getMessage();
             }
         }
     }

@@ -8,7 +8,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     // Kiểm tra các trường nhập liệu có trống?
     if(empty($_POST['email']) || empty($_POST['password']))
     {
-        $error = " Vui lòng nhập đầy đủ thông tin !";
+        $login_error = " Vui lòng nhập đầy đủ thông tin !";
         error_log("Missing email or password\n");
     }
     // Nếu không trống -> lấy thông tin để đăng nhập.
@@ -51,13 +51,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     header("Location: ../index.php");
                     exit();
                 } else {
-                    $error = "Mật khẩu không đúng";
+                   $login_error = "Mật khẩu không đúng";
                 }
             } else {
-                $error = "Email không tồn tại";
+               $login_error = "Email không tồn tại";
             }
         } catch (PDOException $e) {
-            $error = "Có lỗi xảy ra: " . $e->getMessage();
+           $login_error = "Có lỗi xảy ra: " . $e->getMessage();
             error_log("Database error: " . $e->getMessage());
         }
     }

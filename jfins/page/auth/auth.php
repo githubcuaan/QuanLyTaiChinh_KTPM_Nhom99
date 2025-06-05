@@ -27,10 +27,10 @@
             ></a>
           </div>
           <span>hoặc đăng kí bằng email</span>
-          <?php if(isset($error)): ?>
+          <?php if(isset($signup_error)): ?>
             <div class="error-message">
               <i class="fas fa-exclamation-circle"></i>
-              <?php echo $error; ?>
+              <?php echo $signup_error; ?>
             </div>
           <?php endif; ?>
           <input type="text" name="username" placeholder="Username" />
@@ -54,10 +54,10 @@
             ></a>
           </div>
           <span>hoặc đăng nhập bằng email</span>
-          <?php if(isset($error)): ?>
+          <?php if(isset($login_error)): ?>
             <div class="error-message">
               <i class="fas fa-exclamation-circle"></i>
-              <?php echo $error; ?>
+              <?php echo $login_error; ?>
             </div>
           <?php endif; ?>
           <input type="email" name="email" placeholder="Email" />
