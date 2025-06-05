@@ -8,14 +8,14 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
     />
     <link rel="stylesheet" href="../../assets/css/login.css" />
-    <title>Login Page | Caged coder</title>
+    <title>JFINs - Quản lý tài chính</title>
   </head>
 
   <body>
     <div class="container" id="container">
       <div class="form-container sign-up">
         <form>
-          <h1>Create Account</h1>
+          <h1>Tạo tài khoản</h1>
           <div class="social-icons">
             <a href="#" class="icon"
               ><i class="fa-brands fa-google-plus-g"></i
@@ -26,16 +26,16 @@
               ><i class="fa-brands fa-linkedin-in"></i
             ></a>
           </div>
-          <span>or use your email for registeration</span>
+          <span>hoặc đăng kí bằng email</span>
           <input type="text" placeholder="Name" />
           <input type="email" placeholder="Email" />
           <input type="password" placeholder="Password" />
-          <button>Sign Up</button>
+          <button>Đăng ký</button>
         </form>
       </div>
       <div class="form-container sign-in">
         <form>
-          <h1>Sign In</h1>
+          <h1>Đăng nhập</h1>
           <div class="social-icons">
             <a href="#" class="icon"
               ><i class="fa-brands fa-google-plus-g"></i
@@ -46,24 +46,24 @@
               ><i class="fa-brands fa-linkedin-in"></i
             ></a>
           </div>
-          <span>or use your email password</span>
+          <span>hoặc đăng nhập bằng email</span>
           <input type="email" placeholder="Email" />
           <input type="password" placeholder="Password" />
-          <a href="#">Forget Your Password?</a>
-          <button>Sign In</button>
+          <a href="#">Quên Mật Khẩu?</a>
+          <button>Đăng nhập</button>
         </form>
       </div>
       <div class="toggle-container">
         <div class="toggle">
           <div class="toggle-panel toggle-left">
-            <h1>Welcome Back!</h1>
-            <p>Enter your personal details to use all of site features</p>
-            <button class="hidden" id="login">Sign In</button>
+            <h1>Chào mừng trở lại!</h1>
+            <p>Đăng nhập để sử dụng tất cả tính năng</p>
+            <button class="hidden" id="login">Đăng nhập</button>
           </div>
           <div class="toggle-panel toggle-right">
-            <h1>Hello, Friend!</h1>
+            <h1>Chào bạn iu!</h1>
             <p>
-              Register with your personal details to use all of site features
+              Đăng kí tài khoản để sử dụng tất cả các tính năng
             </p>
             <button class="hidden" id="register">Sign Up</button>
           </div>
