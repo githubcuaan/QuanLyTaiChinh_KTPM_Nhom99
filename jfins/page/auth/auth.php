@@ -47,6 +47,12 @@
             ></a>
           </div>
           <span>hoặc đăng nhập bằng email</span>
+          <?php if(isset($error)): ?>
+            <div class="error-message">
+              <i class="fas fa-exclamation-circle"></i>
+              <?php echo $error; ?>
+            </div>
+          <?php endif; ?>
           <input type="email" placeholder="Email" />
           <input type="password" placeholder="Password" />
           <a href="#">Quên Mật Khẩu?</a>
