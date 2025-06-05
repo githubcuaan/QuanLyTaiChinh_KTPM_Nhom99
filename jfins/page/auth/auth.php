@@ -53,8 +53,8 @@
               <?php echo $error; ?>
             </div>
           <?php endif; ?>
-          <input type="email" placeholder="Email" />
-          <input type="password" placeholder="Password" />
+          <input type="email" name="email" placeholder="Email" />
+          <input type="password" name="password" placeholder="Password" />
           <a href="#">Quên Mật Khẩu?</a>
           <button>Đăng nhập</button>
         </form>

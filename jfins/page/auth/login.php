@@ -9,7 +9,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     if(empty($_POST['email']) || empty($_POST['password']))
     {
         $error = " Vui lòng nhập đầy đủ thông tin !";
-        error_log($error."\n");
+        error_log("Missing email or password\n");
     }
     // Nếu không trống -> lấy thông tin để đăng nhập.
     else {
@@ -39,6 +39,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     // Set session variables -> kiểm tra đã được đăng nhập chưa.
                     $_SESSION['user_id'] = $user['user_id'];
                     $_SESSION['username'] = $user['username'];
+
+                    // debuging: lưu thông tin đã đăng nhập vào err log
+                    error_log("Login successful for user: " . $user['username']);
+                    error_log("Session data after login: " . print_r($_SESSION, true));
 
                     // đảm bảo (ensure) sesstion đã được ghi lại trước khi chuyển hướng (redict)
                     session_write_close();

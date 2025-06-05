@@ -53,9 +53,7 @@ function closeLogoutModal() {
 
 //6. Function to handle logout
 function handleLogout() {
-    // Here you would typically make an API call to logout
-    // For now, we'll just redirect to login page
-    window.location.href = 'login.html';
+    
 }
 
 // Initialize event listeners
