@@ -645,9 +645,9 @@
         <span class="close">&times;</span>
         <h2>Xác nhận đăng xuất</h2>
         
-        <div class="logout-confirm">
-          <i class="fa-solid fa-right-from-bracket" style="font-size: 48px; color: #e74c3c; margin: 20px 0;"></i>
-          <p>Bạn có chắc chắn muốn đăng xuất khỏi hệ thống?</p>
+        <div class="logout-confirm" style="display: flex; align-items: center; gap: 15px;">
+          <i class="fa-solid fa-right-from-bracket" style="font-size: 48px; color: #e74c3c;"></i>
+          <p style="margin: 0;">Bạn có chắc chắn muốn đăng xuất khỏi hệ thống?</p>
         </div>
 
         <div class="form-actions">
