@@ -1,9 +1,15 @@
 <?php
   session_start();
+  // // Xóa toàn bộ session để test
+  // session_destroy();
+  // session_start();
+  
   // nếu user_id của session chưa đc set -> chưa đăng nhập -> chuyển hướng đến trang đăng nhập
   if(!isset($_SESSION['user_id']))
   {
-    header('Location: ../page/auth/auth.php');
+    // Add debugging
+    error_log("Session user_id not set, redirecting to login page");
+    header('Location: auth/auth.php');
     exit();
   }
 ?>
