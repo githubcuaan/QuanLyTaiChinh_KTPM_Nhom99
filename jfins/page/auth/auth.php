@@ -27,9 +27,16 @@
             ></a>
           </div>
           <span>hoặc đăng kí bằng email</span>
-          <input type="text" placeholder="Name" />
-          <input type="email" placeholder="Email" />
-          <input type="password" placeholder="Password" />
+          <?php if(isset($error)): ?>
+            <div class="error-message">
+              <i class="fas fa-exclamation-circle"></i>
+              <?php echo $error; ?>
+            </div>
+          <?php endif; ?>
+          <input type="text" name="username" placeholder="Username" />
+          <input type="email" name="email" placeholder="Email" />
+          <input type="password" name="password" placeholder="Password" />
+          <input type="password" name="confirm_password" placeholder="Nhập lại mật khẩu" />
           <button>Đăng ký</button>
         </form>
       </div>
