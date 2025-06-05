@@ -33,9 +33,9 @@
               <?php echo $signup_error; ?>
             </div>
           <?php endif; ?>
-          <input type="text" name="username" placeholder="Username" />
+          <input type="text" name="username" placeholder="Tên đăng nhập" />
           <input type="email" name="email" placeholder="Email" />
-          <input type="password" name="password" placeholder="Password" />
+          <input type="password" name="password" placeholder="Nhập mật khẩu" />
           <input type="password" name="confirm_password" placeholder="Nhập lại mật khẩu" />
           <button>Đăng ký</button>
         </form>
@@ -61,7 +61,7 @@
             </div>
           <?php endif; ?>
           <input type="email" name="email" placeholder="Email" />
-          <input type="password" name="password" placeholder="Password" />
+          <input type="password" name="password" placeholder="Nhập mật khẩu" />
           <a href="#">Quên Mật Khẩu?</a>
           <button>Đăng nhập</button>
         </form>
@@ -78,7 +78,7 @@
             <p>
               Đăng kí tài khoản để sử dụng tất cả các tính năng
             </p>
-            <button class="hidden" id="register">Sign Up</button>
+            <button class="hidden" id="register">Đăng ký</button>
           </div>
         </div>
       </div>
