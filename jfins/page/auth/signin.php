@@ -3,11 +3,13 @@
 session_start();
 require_once '../../config/db_connect.php';
 
+$response = array('success' => false, 'message' => '');
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Kiểm tra nhập liệu
     if (!isset($_POST['username']) || !isset($_POST['email']) || 
         !isset($_POST['password']) || !isset($_POST['confirm_password'])) {
-        $signup_error = "Vui lòng điền đầy đủ thông tin";
+        $response['message'] = 'Vui lòng điền đầy đủ thông tin';
     } else {
         $username = $_POST['username'];
         $email = $_POST['email'];
@@ -16,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         // kiểm tra mật khẩu xác nhận
         if ($confirmpassword != $password) {
-            $signup_error = "Mật khẩu xác nhận không khớp";
+            $response['message'] = "Mật khẩu xác nhận không khớp";
         } else {
             try {
                 // Kiểm tra email đã tồn tại chưa
@@ -27,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 // nếu email đã tồn tại
                 if ($check_stmt->rowCount() > 0) {
-                    $signup_error = "Email đã được sử dụng";
+                    $response['message'] = "Email đã được sử dụng";
                 } else {
                     try {
                         // Mã hóa mật khẩu
@@ -45,26 +47,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             $_SESSION['user_id'] = $conn->lastInsertId();
                             $_SESSION['username'] = $username;
                             
-                            header("Location: ../index.php");
-                            exit();
+                            $response['success'] = 'true';
+                            $response['message'] = 'Đăng kí thành công';
                         } else {
-                            $signup_error = "Có lỗi xảy ra, vui lòng thử lại";
+                            $response['message'] = "Có lỗi xảy ra, vui lòng thử lại";
                         }
                     } catch (PDOException $e) {
                         if ($e->getCode() == 23000) {
-                            $signup_error = "Email đã được sử dụng";
+                            $response['message'] = "Email đã được sử dụng";
                         } else {
-                            $signup_error = "Có lỗi xảy ra: " . $e->getMessage();
+                            $response['message'] = "Có lỗi xảy ra: " . $e->getMessage();
                         }
                     }
                 }
             } catch (PDOException $e) {
-                $signup_error = "Có lỗi xảy ra: ". $e->getMessage();
+                $response['message'] = "Có lỗi xảy ra: ". $e->getMessage();
             }
         }
     }
 }
 
 
-include 'auth.php';
-?>
+// Trả về response dạng JSON
+header('Content-Type: application/json');
+echo json_encode($response);
+exit();
