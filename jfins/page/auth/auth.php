@@ -18,22 +18,12 @@
         <form action="signin.php" method="POST" id="signupForm" onsubmit="return handleSignup(event)">
           <h1>Tạo tài khoản</h1>
           <div class="social-icons">
-            <a href="#" class="icon"
-              ><i class="fa-brands fa-google-plus-g"></i
-            ></a>
+            <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
             <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
             <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
-            <a href="#" class="icon"
-              ><i class="fa-brands fa-linkedin-in"></i
-            ></a>
+            <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
           </div>
           <span>hoặc đăng kí bằng email</span>
-          <?php if(isset($signup_error)): ?>
-            <div class="error-message">
-              <i class="fas fa-exclamation-circle"></i>
-              <?php echo $signup_error; ?>
-            </div>
-          <?php endif; ?>
           <input type="text" name="username" placeholder="Tên đăng nhập" />
           <input type="email" name="email" placeholder="Email" />
           <input type="password" name="password" placeholder="Nhập mật khẩu" />
@@ -42,29 +32,19 @@
         </form>
       </div>
       <div class="form-container sign-in">
-        <form action="login.php" method="POST" id="loginForm"> 
+        <form id="loginForm">
           <h1>Đăng nhập</h1>
           <div class="social-icons">
-            <a href="#" class="icon"
-              ><i class="fa-brands fa-google-plus-g"></i
-            ></a>
+            <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
             <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
             <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
-            <a href="#" class="icon"
-              ><i class="fa-brands fa-linkedin-in"></i
-            ></a>
+            <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
           </div>
           <span>hoặc đăng nhập bằng email</span>
-          <?php if(isset($login_error)): ?>
-            <div class="error-message">
-              <i class="fas fa-exclamation-circle"></i>
-              <?php echo $login_error; ?>
-            </div>
-          <?php endif; ?>
           <input type="email" name="email" placeholder="Email" />
           <input type="password" name="password" placeholder="Nhập mật khẩu" />
           <a href="#">Quên Mật Khẩu?</a>
-          <button>Đăng nhập</button>
+          <button type="submit">Đăng nhập</button>
         </form>
       </div>
       <div class="toggle-container">
@@ -76,9 +56,7 @@
           </div>
           <div class="toggle-panel toggle-right">
             <h1>Chào bạn iu!</h1>
-            <p>
-              Đăng kí tài khoản để sử dụng tất cả các tính năng
-            </p>
+            <p>Đăng kí tài khoản để sử dụng tất cả các tính năng</p>
             <button class="hidden" id="register">Đăng ký</button>
           </div>
         </div>
@@ -89,11 +67,11 @@
     <div id="successModal" class="modal">
       <div class="modal-content">
         <div class="modal-header">
-          <h2>Đăng ký thành công!</h2>
+          <h2>Đăng nhập thành công!</h2>
         </div>
         <div class="modal-body">
           <i class="fas fa-check-circle" style="color: #2da0a8; font-size: 48px;"></i>
-          <p>Tài khoản của bạn đã được tạo thành công.</p>
+          <p>Chào mừng bạn quay trở lại!</p>
         </div>
         <div class="modal-footer">
           <button id="confirmSuccess" class="btn btn-primary">Xác nhận</button>
@@ -102,12 +80,5 @@
     </div>
 
     <script src="../../assets/js/login.js"></script>
-    <script>
-      function showTestModal() {
-        const modal = document.getElementById('successModal');
-        modal.style.display = 'block';
-        modal.classList.add('show');
-      }
-    </script>
   </body>
 </html>
