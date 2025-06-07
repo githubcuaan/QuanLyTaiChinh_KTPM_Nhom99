@@ -21,7 +21,7 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
     const formData = new FormData(form);
 
     try {
-        const response = await fetch('login.php', {
+        const response = await fetch('../../api/auth/login.php', {
             method: 'POST',
             body: formData
         });
@@ -34,7 +34,7 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
             oldError.remove();
         }
 
-        if(data.success === 'true') {
+        if(data.success === true) {
             // Hiển thị model thành công
             successModal.style.display = 'block';
             // Đợi một chút để đảm bảo display: block đã được áp dụng
@@ -71,7 +71,7 @@ async function handleSignup(event) {
     const formData = new FormData(form);
 
     try {
-        const response = await fetch('signin.php', {
+        const response = await fetch('../../api/auth/signin.php', {
             method: 'POST',
             body: formData
         });
@@ -84,7 +84,7 @@ async function handleSignup(event) {
             oldError.remove();
         }
 
-        if(data.success === 'true') {
+        if(data.success === true) {
             // Hiển thị model thành công
             successModal.style.display = 'block';
             // Đợi một chút để đảm bảo display: block đã được áp dụng

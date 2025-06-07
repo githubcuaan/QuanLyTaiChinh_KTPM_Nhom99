@@ -58,7 +58,7 @@ function closeLogoutModal() {
 
 //6. Function to handle logout
 function handleLogout() {
-    window.location.href = './auth/logout.php';
+    window.location.href = '../api/auth/logout.php';
 }
 
 // Khởi tạo profilemodel

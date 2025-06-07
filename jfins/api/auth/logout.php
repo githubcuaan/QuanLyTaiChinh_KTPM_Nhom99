@@ -8,6 +8,6 @@ $_SESSION = array();
 session_destroy();
 
 //
-header("Location: auth.php");
+header("Location: ..\..\page\auth\auth.php");
 exit();
 ?>

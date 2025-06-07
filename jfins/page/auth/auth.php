@@ -15,7 +15,7 @@
   <body <?php if(isset($signup_success) && $signup_success): ?>data-signup-success="true"<?php endif; ?>>
     <div class="container" id="container">
       <div class="form-container sign-up">
-        <form action="signin.php" method="POST" id="signupForm" onsubmit="return handleSignup(event)">
+        <form id="signupForm" onsubmit="return handleSignup(event)">
           <h1>Tạo tài khoản</h1>
           <div class="social-icons">
             <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
@@ -67,11 +67,11 @@
     <div id="successModal" class="modal">
       <div class="modal-content">
         <div class="modal-header">
-          <h2>Đăng nhập thành công!</h2>
+          <h2>Đăng ký thành công!</h2>
         </div>
         <div class="modal-body">
           <i class="fas fa-check-circle" style="color: #2da0a8; font-size: 48px;"></i>
-          <p>Chào mừng bạn quay trở lại!</p>
+          <p>Chào mừng bạn đến với JFINs!</p>
         </div>
         <div class="modal-footer">
           <button id="confirmSuccess" class="btn btn-primary">Xác nhận</button>

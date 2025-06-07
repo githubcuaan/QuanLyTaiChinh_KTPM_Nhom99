@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             $_SESSION['user_id'] = $conn->lastInsertId();
                             $_SESSION['username'] = $username;
                             
-                            $response['success'] = 'true';
+                            $response['success'] = true;
                             $response['message'] = 'Đăng kí thành công';
                         } else {
                             $response['message'] = "Có lỗi xảy ra, vui lòng thử lại";

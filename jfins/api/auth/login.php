@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     // Đảm bảo session được ghi
                     session_write_close();
 
-                    $response['success'] = 'true';
+                    $response['success'] = true;
                     $response['message'] = 'Đăng nhập thành công';
                 } else {
                     $response['message'] = "Mật khẩu không đúng";
