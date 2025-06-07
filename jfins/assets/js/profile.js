@@ -15,11 +15,20 @@ const logoutCloseBtns = document.querySelectorAll('#logout-modal .close');
 const cancelLogoutBtn = document.getElementById('cancel-logout');
 const confirmLogoutBtn = document.getElementById('confirm-logout');
 
+// Get form elements
+const currentPasswordInput = document.getElementById('current-password');
+const newPasswordInput = document.getElementById('new-password');
+const confirmPasswordInput = document.getElementById('confirm-password');
+
 //2. Function to open profile modal
 function openProfileModal() {
     if (profileModal) {
         profileModal.style.display = 'block';
         profileModal.classList.add('show');
+        // Clear form inputs
+        currentPasswordInput.value = '';
+        newPasswordInput.value = '';
+        confirmPasswordInput.value = '';
     }
 }
 
@@ -28,10 +37,6 @@ function closeProfileModal() {
     if (profileModal) {
         profileModal.classList.remove('show');
         profileModal.style.display = 'none';
-        // Clear form fields when closing
-        document.getElementById('current-password').value = '';
-        document.getElementById('new-password').value = '';
-        document.getElementById('confirm-password').value = '';
     }
 }
 
@@ -88,13 +93,52 @@ function initializeProfileModal() {
         }
     });
 
-    // Handle save password
-    if (saveProfileBtn) {
-        saveProfileBtn.addEventListener('click', () => {
-            if (validatePassword()) {
-                // Here you would typically make an API call to change the password
-                alert('Mật khẩu đã được thay đổi thành công!');
-                closeProfileModal();
+    //10. Chức năng đổi mật khẩu
+    if(saveProfileBtn) {
+        saveProfileBtn.addEventListener('click', async () => {
+            const currentPassword = currentPasswordInput.value;
+            const newPassword = newPasswordInput.value;
+            const confirmPassword = confirmPasswordInput.value;
+
+            //kiểm tra nhập liệu.
+            if(!currentPassword || !newPassword || !confirmPassword ) {
+                alert('Điền đủ thông tin đi ba =))');
+                return;
+            }
+
+            if (newPassword !== confirmPassword) {
+                alert('Mật khẩu mới không khớp!');
+                return;
+            }
+
+            // 
+            try {
+
+                // call api
+                const response = await fetch('../api/auth/change_password.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        current_password: currentPassword,
+                        new_password: newPassword,
+                        confirm_password: confirmPassword
+                    })   
+                });
+
+                //  lấy resonpse 
+                const data = await response.json();
+
+                if(data.success) {
+                    alert('Đổi mật khẩu thành công!');
+                    closeProfileModal();
+                } else {
+                    alert(data.message || 'Có lỗi khi đổi mật khẩu.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Có lỗi khi đổi mật khẩu.');
             }
         });
     }
