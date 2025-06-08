@@ -52,12 +52,43 @@ async function updateDashboardData() {
             if (jarElements[index]) {
                 jarElements[index].querySelector('strong').textContent = formatMoney(jar.balance || 0);
                 jarElements[index].querySelector('span').textContent = (jar.percentage || 0) + '%';
+                
+                // Thêm data attributes cho mỗi hũ
+                jarElements[index].setAttribute('data-jar-id', index + 1);
+                jarElements[index].setAttribute('data-jar-name', jar.name);
+                jarElements[index].setAttribute('data-jar-balance', jar.balance || 0);
+                
+                // Thêm sự kiện click cho mỗi hũ
+                jarElements[index].addEventListener('click', function() {
+                    const jarId = this.getAttribute('data-jar-id');
+                    const jarName = this.getAttribute('data-jar-name');
+                    const jarBalance = this.getAttribute('data-jar-balance');
+                    openExpenseModalFromJar(jarId, jarName, jarBalance);
+                });
             }
         });
 
     } catch (error) {
         console.error('Error fetching dashboard data:', error);
     }
+}
+
+// Hàm mở modal thêm chi tiêu từ hũ
+function openExpenseModalFromJar(jarId, jarName, jarBalance) {
+    const expenseModal = document.getElementById('expense-form-container');
+    const expenseJarSelect = document.getElementById('expense-jar-select');
+    const expenseJarBalance = document.getElementById('expense-jar-balance');
+    
+    // Set giá trị cho form
+    document.getElementById('expense-date').valueAsDate = new Date();
+    expenseJarSelect.value = jarId;
+    expenseJarBalance.value = formatMoney(jarBalance);
+    
+    // Hiển thị modal
+    expenseModal.style.display = 'block';
+    setTimeout(() => {
+        expenseModal.classList.add('show');
+    }, 10);
 }
 
 // Dữ liệu mẫu cho biểu đồ

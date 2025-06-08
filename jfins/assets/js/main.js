@@ -29,6 +29,11 @@ navItems.forEach((item, index) => {
         const selectedSection = sections[sectionIds[index]];
         if (selectedSection) {
             selectedSection.style.display = 'block';
+            
+            // Nếu chuyển về trang tổng quan, cập nhật dữ liệu
+            if (sectionIds[index] === 'sumary' && typeof updateDashboardData === 'function') {
+                updateDashboardData();
+            }
         }
     });
 });
