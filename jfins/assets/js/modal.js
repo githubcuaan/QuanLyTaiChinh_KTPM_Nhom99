@@ -120,12 +120,7 @@ document.addEventListener('DOMContentLoaded', function() {
         hideModal(expenseModal);
     });
 
-    // Handle save button
-    saveExpenseBtn.addEventListener('click', () => {
-        // TODO: Implement saving expense functionality
-        alert('Chức năng lưu chi tiêu sẽ được thêm vào sau!');
-        hideModal(expenseModal);
-    });
+    
 }); 
 const deleteConfirmModal = document.getElementById('deleteConfirmModal');
 const confirmDeleteBtn = document.getElementById('confirm-delete-btn');
@@ -195,7 +190,6 @@ dangerCheckbox.addEventListener('change', function() {
 // Hàm xóa dữ liệu (ví dụ)
 function deleteAllData() {
   // Thực hiện xóa dữ liệu ở đây
-  alert('Đã xóa toàn bộ dữ liệu!');
   
   // Reset checkbox và nút
   dangerCheckbox.checked = false;

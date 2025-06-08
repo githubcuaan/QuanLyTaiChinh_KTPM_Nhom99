@@ -264,7 +264,7 @@
                     <i class="fa-solid fa-search search-icon"></i>
                     <input type="text" placeholder="Tìm kiếm mô tả..." id="search-input">
                 </div>
-                <button class="add-button" onclick="openExpenseForm()">+ Thêm chi tiêu</button>
+                <button class="add-button" >+ Thêm chi tiêu</button>
             </div>
             <table class="table-chitieu">
                 <thead class="thead-chitieu">
@@ -277,36 +277,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>10/04/2025</td>
-                <td class="category"><img src="../assets/icon/jars/icons8-books-50.png" class="category-icon"/>Giáo Dục</td>
-                <td>Ghi chú</td>
-                <td>25.000 đ</td>
-                        <td class="actions">
-                  <button id="expense-edit-btn" onclick="openExpenseEditForm()">✏️</button>
-                  <button id="expense-delete-btn" onclick="deleteRow(this)">🗑️</button>
-                        </td>
-                    </tr>
-                    <tr>
-                <td>10/04/2025</td>
-                <td class="category"><img src="https://img.icons8.com/color/48/heart-health.png" class="category-icon"/>Thiết Yếu</td>
-                        <td>Tiền điện nước</td>
-                <td>100.000 đ</td>
-                        <td class="actions">
-                  <button id="expense-edit-btn" onclick="openExpenseEditForm()">✏️</button>
-                  <button id="expense-delete-btn" onclick="deleteRow(this)">🗑️</button>
-                        </td>
-                    </tr>
-                    <tr>
-                <td>10/04/2025</td>
-                <td class="category"><img src="../assets/icon/jars/icons8-gift-50.png" class="category-icon"/>thiện tâm </td>
-                <td>gửi tặng</td>
-                <td>25.000 đ</td>
-                        <td class="actions">
-                  <button id="expense-edit-btn" onclick="openExpenseEditForm()">✏️</button>
-                  <button id="expense-delete-btn" onclick="deleteRow(this)">🗑️</button>
-                        </td>
-                    </tr>
+                    <!-- Dữ liệu sẽ được load từ JavaScript -->
                 </tbody>
             </table>
             </div>
@@ -477,12 +448,12 @@
         <!-- Hũ -->
         <label for="expense-jar-select">Hũ:</label>
         <select id="expense-jar-select" class="form-control" required>
-          <option value="jar-thietyeu">🏠 Thiết yếu</option>
-          <option value="jar-tudotaichinh">💰 Tự Do Tài Chính</option>
-          <option value="jar-giaoduc">📘 Giáo Dục</option>
-          <option value="jar-huongthu">🎉 Hưởng Thụ</option>
-          <option value="jar-thientam">🎁 Thiện Tâm</option>
-          <option value="jar-tietkiem">📋 Tiết Kiệm</option>
+          <option value="1">🏠 Thiết yếu</option>
+          <option value="2">💰 Tự Do Tài Chính</option>
+          <option value="3">📘 Giáo Dục</option>
+          <option value="4">🎉 Hưởng Thụ</option>
+          <option value="5">🎁 Thiện Tâm</option>
+          <option value="6">📋 Tiết Kiệm</option>
         </select>
 
         <!-- Số dư của hũ (chỉ hiển thị, không cho chỉnh sửa) -->
@@ -586,12 +557,12 @@
         <!-- Hũ -->
         <label for="edit-expense-jar-select">Hũ:</label>
         <select id="edit-expense-jar-select" class="form-control" required>
-          <option value="jar-thietyeu">🏠 Thiết yếu</option>
-          <option value="jar-tudotaichinh">💰 Tự Do Tài Chính</option>
-          <option value="jar-giaoduc">📘 Giáo Dục</option>
-          <option value="jar-huongthu">🎉 Hưởng Thụ</option>
-          <option value="jar-thientam">🎁 Thiện Tâm</option>
-          <option value="jar-tietkiem">📋 Tiết Kiệm</option>
+          <option value="1">🏠 Thiết yếu</option>
+          <option value="2">💰 Tự Do Tài Chính</option>
+          <option value="3">📘 Giáo Dục</option>
+          <option value="4">🎉 Hưởng Thụ</option>
+          <option value="5">🎁 Thiện Tâm</option>
+          <option value="6">📋 Tiết Kiệm</option>
         </select>
 
         <!-- Số tiền -->
