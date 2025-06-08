@@ -75,7 +75,7 @@ Dự án được xây dựng trên kiến trúc Client-Server vững chắc:
 ## 🗂️ Cấu trúc thư mục
 
 Cấu trúc thư mục được tổ chức một cách rõ ràng và khoa học:
-```json
+```
 QuanLyTaiChinh_KTPM_Nhom99-main/
 └── jfins/
 ├── api/                <- Chứa các file PHP xử lý logic (backend)
