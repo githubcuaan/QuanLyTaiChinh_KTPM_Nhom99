@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const addIncomeBtn = document.querySelector('.thunhap-add-btn');
     const cancelEditIncomeBtn = document.getElementById('cancel-edit-income');
     const saveEditIncomeBtn = document.getElementById('save-edit-income');
-
     // Get form elements
     const incomeDate = document.getElementById('income-date');
     const incomeAmount = document.getElementById('income-amount');
@@ -23,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Set today's date as default
     incomeDate.valueAsDate = new Date();
 
+    // 1. CÁC HÀM ĐỂ HIỂN THỊ MODAL
     // Function to show modal
     function showModal(modal) {
         modal.style.display = 'block';
@@ -77,44 +77,50 @@ document.addEventListener('DOMContentLoaded', function() {
         hideModal(incomeEditModal);
     });
 
+    // 2. HÀM THÊM THU NHẬP
     // Handle save button for new income
-    saveIncomeBtn.addEventListener('click', () => {
-        // Validate form
-        if (!incomeDate.value || !incomeAmount.value || !incomeDescription.value) {
-            alert('Vui lòng điền đầy đủ thông tin!');
+    saveIncomeBtn.addEventListener('click', async () => {
+        const date = document.getElementById('income-date').value;
+        const amount = document.getElementById('income-amount').value;
+        const description = document.getElementById('income-description').value;
+
+        // kiểm tra input
+        if(!date || !amount || !description) {
+            alert('Vui lòng nhập đủ thông tin');
             return;
         }
 
-        // Format the date
-        const date = new Date(incomeDate.value);
-        const formattedDate = date.toLocaleDateString('vi-VN');
+        try {
+            const response = await fetch('/QuanLyTaiChinh_KTPM_Nhom99/jfins/api/income/add_income.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    date,
+                    amount,
+                    description
+                })
+            });
 
-        // Format the amount
-        const amount = parseFloat(incomeAmount.value).toLocaleString('vi-VN') + ' đ';
+            const data = await response.json();
 
-        // Create new row in the table
-        const table = document.querySelector('.thunhap-table tbody');
-        const newRow = document.createElement('tr');
-        newRow.innerHTML = `
-            <td>${formattedDate}</td>
-            <td>${incomeDescription.value}</td>
-            <td>${amount}</td>
-            <td>
-                <button id="income-edit-btn" class="thunhap-action-btn" onclick="editIncomeRow(this)">✏️</button>
-                <button id="income-delete-btn" class="thunhap-action-btn" onclick="deleteIncomeRow(this)">🗑️</button>
-            </td>
-        `;
-        table.insertBefore(newRow, table.firstChild);
-
-        // Hide modal
-        hideModal(incomeModal);
-
-        // TODO: Add actual data saving functionality here
-        console.log('Income saved:', {
-            date: incomeDate.value,
-            amount: incomeAmount.value,
-            description: incomeDescription.value
-        });
+            if(data.success) {
+                alert(data.message);
+                hideModal(incomeModal);
+                //reset form
+                document.getElementById('income-date').value = '';
+                document.getElementById('income-amount').value = '';
+                document.getElementById('income-description').value = '';
+                // load lại danh sách thu nhập
+                loadIncomes();
+            } else {
+                alert('data.message');
+            }
+        } catch (error) {
+            console.error('Error: ',error);
+            alert('Có lỗi xảy ra, xin vui lòng thử lại');
+        }
     });
 
     // Handle save button for editing income
@@ -210,4 +216,55 @@ function deleteIncomeRow(button) {
         const row = button.closest('tr');
         row.remove();
     }
-} 
+}
+
+// 3. HÀM GET INCOME
+// Hàm load danh sách thu nhập
+async function loadIncomes() {
+    try {
+        const response = await fetch('/QuanLyTaiChinh_KTPM_Nhom99/jfins/api/income/get_incomes.php');
+        const data = await response.json();
+
+        if(data.success) {
+            // Xóa nội dung cũ
+            const incomeTable = document.querySelector('.thunhap-table tbody');
+            incomeTable.innerHTML = '';
+            
+            // Thêm data mới
+            data.data.forEach(income => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${formatDate(income.income_date)}</td>
+                    <td>${income.description}</td>
+                    <td>${formatMoney(income.amount)}</td>
+                    <td>
+                        <button class="thunhap-action-btn" onclick="editIncome(${income.income_id})">✏️</button>
+                        <button class="thunhap-action-btn" onclick="deleteIncome(${income.income_id})">🗑️</button>
+                    </td>    
+                `;
+                incomeTable.appendChild(row);
+            });
+        } else {
+            console.error('Error loading income: ', data.message);
+        }
+    } catch (error) {
+        console.error('Error loading income: ', error);
+    }
+}
+
+// Hàm format ngày tháng
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('vi-VN');
+}
+
+// Hàm format tiền
+function formatMoney(amount) {
+    return new Intl.NumberFormat('vi-VN', {
+        style: 'currency',
+        currency: 'VND'
+    }).format(amount);
+}
+
+// Load danh sách thu nhập khi trang được tải
+document.addEventListener('DOMContentLoaded', loadIncomes); 
