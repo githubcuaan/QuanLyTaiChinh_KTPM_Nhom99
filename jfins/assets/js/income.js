@@ -222,9 +222,9 @@ async function editIncomeRow(button) {
     }
 
     // Get current values
-    const date = cells[0].textContent;
+    const dateText = cells[0].textContent;
     const description = cells[1].textContent;
-    const amount = cells[2].textContent.replace(' đ', '').replace(/\./g, '');
+    const amountText = cells[2].textContent;
 
     // Set values in edit form
     const editDate = document.getElementById('edit-income-date');
@@ -232,10 +232,13 @@ async function editIncomeRow(button) {
     const editDescription = document.getElementById('edit-income-description');
 
     // Convert date from dd/mm/yyyy to yyyy-mm-dd
-    const [day, month, year] = date.split('/');
-    editDate.value = `${year}-${month}-${day}`;
+    const [day, month, year] = dateText.split('/');
+    editDate.value = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
     
+    // Convert amount from "1.000.000 đ" to "1000000"
+    const amount = amountText.replace(/[^\d]/g, '');
     editAmount.value = amount;
+    
     editDescription.value = description;
 
     // Store the row for later use
