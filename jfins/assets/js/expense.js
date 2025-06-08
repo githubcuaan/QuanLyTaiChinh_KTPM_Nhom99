@@ -218,10 +218,43 @@ function editExpenseRow(button) {
 }
 
 // Hàm xóa chi tiêu
-function deleteExpenseRow(button) {
+async function deleteExpenseRow(button) {
     if (confirm("Bạn có chắc muốn xóa mục chi tiêu này không?")) {
         const row = button.closest('tr');
-        row.remove();
+        const expenseId = row.getAttribute('data-expense-id');
+
+        if (!expenseId) {
+            console.error('No expense_id found on row');
+            alert('Có lỗi xảy ra: Không tìm thấy ID của chi tiêu');
+            return;
+        }
+
+        try {
+            const response = await fetch('/QuanLyTaiChinh_KTPM_Nhom99/jfins/api/expense/delete_expense.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    expense_id: expenseId
+                })
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                alert(data.message);
+                // Xóa hàng khỏi bảng
+                row.remove();
+                // Load lại danh sách chi tiêu
+                loadExpenses();
+            } else {
+                alert(data.message || 'Có lỗi xảy ra khi xóa chi tiêu');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Có lỗi xảy ra, xin vui lòng thử lại');
+        }
     }
 }
 
