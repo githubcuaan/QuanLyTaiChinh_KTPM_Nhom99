@@ -44,8 +44,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         
                         if ($stmt->execute()) {
                             //nếu tạo thành công -> lưu thông tin vào $_session và chuyển hướng
-                            $_SESSION['user_id'] = $conn->lastInsertId();
+                            $user_id = $conn->lastInsertId();
+                            $_SESSION['user_id'] = $user_id;
                             $_SESSION['username'] = $username;
+                            
+                            // Thêm cài đặt phần trăm hũ mặc định
+                            $default_allocations = [
+                                ['jar_id' => 1, 'percentage' => 55], // Thiết Yếu
+                                ['jar_id' => 2, 'percentage' => 10], // Tự Do Tài Chính
+                                ['jar_id' => 3, 'percentage' => 10], // Giáo Dục
+                                ['jar_id' => 4, 'percentage' => 10], // Hưởng Thụ
+                                ['jar_id' => 5, 'percentage' => 5],  // Thiện Tâm
+                                ['jar_id' => 6, 'percentage' => 10]  // Tiết Kiệm
+                            ];
+
+                            $allocation_sql = "INSERT INTO jar_allocations (user_id, jar_id, percentage) VALUES (:user_id, :jar_id, :percentage)";
+                            $allocation_stmt = $conn->prepare($allocation_sql);
+
+                            foreach ($default_allocations as $allocation) {
+                                $allocation_stmt->bindParam(':user_id', $user_id);
+                                $allocation_stmt->bindParam(':jar_id', $allocation['jar_id']);
+                                $allocation_stmt->bindParam(':percentage', $allocation['percentage']);
+                                $allocation_stmt->execute();
+                            }
                             
                             $response['success'] = true;
                             $response['message'] = 'Đăng kí thành công';
