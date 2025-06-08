@@ -98,7 +98,7 @@ function saveExpense() {
     const newRow = document.createElement('tr');
     newRow.innerHTML = `
         <td>${formattedDate}</td>
-        <td class="category"><img src="../assets/icon/jars/icons8-${getJarIcon(jar)}.png" class="category-icon"/>${jarName}</td>
+        <td class="category">${jarName}</td>
         <td>${description}</td>
         <td>${formattedAmount}</td>
         <td class="actions">
@@ -113,7 +113,7 @@ function saveExpense() {
 }
 
 // Hàm lưu chi tiêu đã sửa
-function saveEditExpense() {
+async function saveEditExpense() {
     const date = document.getElementById('edit-expense-date').value;
     const jar = document.getElementById('edit-expense-jar-select').value;
     const amount = document.getElementById('edit-expense-amount').value;
@@ -125,45 +125,65 @@ function saveEditExpense() {
         return;
     }
 
-    // Format the date
-    const formattedDate = new Date(date).toLocaleDateString('vi-VN');
-
-    // Format the amount
-    const formattedAmount = parseFloat(amount).toLocaleString('vi-VN') + ' đ';
-
-    // Get jar name from value
-    const jarName = document.querySelector(`#edit-expense-jar-select option[value="${jar}"]`).textContent;
-
-    // Update the row
-    const currentRow = document.querySelector('.table-chitieu tbody tr.editing');
-    if (currentRow) {
-        currentRow.innerHTML = `
-            <td>${formattedDate}</td>
-            <td class="category"><img src="../assets/icon/jars/icons8-${getJarIcon(jar)}.png" class="category-icon"/>${jarName}</td>
-            <td>${description}</td>
-            <td>${formattedAmount}</td>
-            <td class="actions">
-                <button id="expense-edit-btn" onclick="editExpenseRow(this)">✏️</button>
-                <button id="expense-delete-btn" onclick="deleteExpenseRow(this)">🗑️</button>
-            </td>
-        `;
-        currentRow.classList.remove('editing');
+    // Lấy expense_id từ hàng đang được sửa
+    const editingRow = document.querySelector('.table-chitieu tbody tr.editing');
+    if (!editingRow) {
+        alert('Không tìm thấy chi tiêu cần sửa!');
+        return;
     }
+    const expenseId = editingRow.getAttribute('data-expense-id');
 
-    // Hide modal
-    closeExpenseEditModal();
+    try {
+        const response = await fetch('/QuanLyTaiChinh_KTPM_Nhom99/jfins/api/expense/update_expense.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                expense_id: expenseId,
+                date: date,
+                amount: amount,
+                description: description,
+                jar_id: jar
+            })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            alert(data.message);
+            // Đóng modal
+            closeExpenseEditModal();
+            // Load lại danh sách chi tiêu
+            loadExpenses();
+            // // Load lại số dư các hũ
+            // loadJarBalances();
+        } else {
+            alert(data.message || 'Có lỗi xảy ra khi sửa chi tiêu');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Có lỗi xảy ra, xin vui lòng thử lại');
+    }
 }
 
 // Hàm sửa chi tiêu
 function editExpenseRow(button) {
     const row = button.closest('tr');
     const cells = row.cells;
+    const expenseId = row.getAttribute('data-expense-id');
     
+    if (!expenseId) {
+        console.error('No expense_id found on row');
+        alert('Có lỗi xảy ra: Không tìm thấy ID của chi tiêu');
+        return;
+    }
+
     // Get current values
-    const date = cells[0].textContent;
-    const jarText = cells[1].textContent;
+    const dateText = cells[0].textContent;
+    const jarText = cells[1].textContent.trim();
     const description = cells[2].textContent;
-    const amount = cells[3].textContent.replace(' đ', '').replace(/\./g, '');
+    const amountText = cells[3].textContent;
 
     // Set values in edit form
     const editDate = document.getElementById('edit-expense-date');
@@ -172,23 +192,28 @@ function editExpenseRow(button) {
     const editDescription = document.getElementById('edit-expense-description');
 
     // Convert date from dd/mm/yyyy to yyyy-mm-dd
-    const [day, month, year] = date.split('/');
-    editDate.value = `${year}-${month}-${day}`;
+    const [day, month, year] = dateText.split('/');
+    editDate.value = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
     
     // Set jar value based on text
     const jarValue = getJarValue(jarText);
     editJar.value = jarValue;
     
+    // Convert amount from "1.000.000 đ" to "1000000"
+    const amount = amountText.replace(/[^\d]/g, '');
     editAmount.value = amount;
+    
     editDescription.value = description;
 
-    // Mark row as being edited
+    // Store the expense_id for later use
     row.classList.add('editing');
+    row.setAttribute('data-editing-id', expenseId);
 
     // Show edit modal
-    expenseEditModal.style.display = 'block';
+    const editModal = document.getElementById('expense-edit-container');
+    editModal.style.display = 'block';
     setTimeout(() => {
-        expenseEditModal.classList.add('show');
+        editModal.classList.add('show');
     }, 10);
 }
 
@@ -216,14 +241,14 @@ function getJarIcon(jarValue) {
 // Helper function to get jar value from text
 function getJarValue(jarText) {
     const jarValues = {
-        '🏠 Thiết yếu': 'jar-thietyeu',
-        '💰 Tự Do Tài Chính': 'jar-tudotaichinh',
-        '📘 Giáo Dục': 'jar-giaoduc',
-        '🎉 Hưởng Thụ': 'jar-huongthu',
-        '🎁 Thiện Tâm': 'jar-thientam',
-        '📋 Tiết Kiệm': 'jar-tietkiem'
+        'Thiết yếu': '1',
+        'Tự Do Tài Chính': '2',
+        'Giáo Dục': '3',
+        'Hưởng Thụ': '4',
+        'Thiện Tâm': '5',
+        'Tiết Kiệm': '6'
     };
-    return jarValues[jarText] || 'jar-thietyeu';
+    return jarValues[jarText] || '1';
 }
 
 // Add event listener for save edit button

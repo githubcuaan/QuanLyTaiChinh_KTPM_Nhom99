@@ -557,12 +557,12 @@
         <!-- Hũ -->
         <label for="edit-expense-jar-select">Hũ:</label>
         <select id="edit-expense-jar-select" class="form-control" required>
-          <option value="1">🏠 Thiết yếu</option>
-          <option value="2">💰 Tự Do Tài Chính</option>
-          <option value="3">📘 Giáo Dục</option>
-          <option value="4">🎉 Hưởng Thụ</option>
-          <option value="5">🎁 Thiện Tâm</option>
-          <option value="6">📋 Tiết Kiệm</option>
+          <option value="1">Thiết yếu</option>
+          <option value="2">Tự Do Tài Chính</option>
+          <option value="3">Giáo Dục</option>
+          <option value="4"> Hưởng Thụ</option>
+          <option value="5">Thiện Tâm</option>
+          <option value="6">Tiết Kiệm</option>
         </select>
 
         <!-- Số tiền -->
