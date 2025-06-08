@@ -202,7 +202,7 @@
                 <button class="thunhap-btn">Năm nay</button>
                 <button class="thunhap-btn">Tùy chỉnh</button>
               </div>
-              <input type="text" class="thunhap-search-box" placeholder="Tìm kiếm mô tả..." />
+              <input type="text" id="income-search" class="thunhap-search-box" placeholder="Tìm kiếm mô tả..." />
             </div>
           </div>
 
@@ -262,7 +262,7 @@
                 </div>
                 <div class="search-bar-chitieu">
                     <i class="fa-solid fa-search search-icon"></i>
-                    <input type="text" placeholder="Tìm kiếm mô tả..." id="search-input">
+                    <input type="text" id="expense-search" placeholder="Tìm kiếm mô tả...">
                 </div>
                 <button class="add-button" >+ Thêm chi tiêu</button>
             </div>

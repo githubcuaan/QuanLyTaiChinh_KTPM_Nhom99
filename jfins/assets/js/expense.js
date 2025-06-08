@@ -496,6 +496,24 @@ async function loadExpenses() {
                 `;
                 expenseTable.appendChild(row);
             });
+
+            // Thêm sự kiện tìm kiếm
+            const searchInput = document.getElementById('expense-search');
+            if (searchInput) {
+                searchInput.addEventListener('input', function() {
+                    const searchTerm = this.value.toLowerCase();
+                    const rows = expenseTable.getElementsByTagName('tr');
+                    
+                    for (let row of rows) {
+                        const description = row.cells[2].textContent.toLowerCase();
+                        if (description.includes(searchTerm)) {
+                            row.style.display = '';
+                        } else {
+                            row.style.display = 'none';
+                        }
+                    }
+                });
+            }
         } else {
             console.error('Error loading expenses: ', data.message);
         }

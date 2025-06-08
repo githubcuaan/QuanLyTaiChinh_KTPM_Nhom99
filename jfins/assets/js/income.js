@@ -317,6 +317,24 @@ async function loadIncomes() {
                 `;
                 incomeTable.appendChild(row);
             });
+
+            // Thêm sự kiện tìm kiếm
+            const searchInput = document.getElementById('income-search');
+            if (searchInput) {
+                searchInput.addEventListener('input', function() {
+                    const searchTerm = this.value.toLowerCase();
+                    const rows = incomeTable.getElementsByTagName('tr');
+                    
+                    for (let row of rows) {
+                        const description = row.cells[1].textContent.toLowerCase();
+                        if (description.includes(searchTerm)) {
+                            row.style.display = '';
+                        } else {
+                            row.style.display = 'none';
+                        }
+                    }
+                });
+            }
         } else {
             console.error('Error loading income: ', data.message);
         }
