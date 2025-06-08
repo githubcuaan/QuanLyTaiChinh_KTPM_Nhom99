@@ -637,5 +637,6 @@
     <script src="../assets/js/expense.js"></script>
     <script src="../assets/js/income.js"></script>
     <script src="../assets/js/profile.js"></script>
+    <script src="../assets/js/jar-config.js"></script>
   </body>
 </html>
