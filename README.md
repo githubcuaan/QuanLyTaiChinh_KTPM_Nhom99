@@ -7,10 +7,10 @@
 
 Dự án được thực hiện bởi các thành viên:
 
-- Phạm Lê Đình An
-- Hà Lê Quang Minh
-- Nguyễn Duy Anh Tuấn
-- Nguyễn Đức Tuấn
+-🐶Phạm Lê Đình An
+-👴 Hà Lê Quang Minh
+-👴Nguyễn Duy Anh Tuấn
+-👴Nguyễn Đức Tuấn
 
 ## 📚 Giới thiệu: Phương pháp 6 Hũ
 
