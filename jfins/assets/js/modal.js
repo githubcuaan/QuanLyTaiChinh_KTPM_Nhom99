@@ -193,12 +193,31 @@ dangerCheckbox.addEventListener('change', function() {
   }
 });
 
-// Hàm xóa dữ liệu (ví dụ)
-function deleteAllData() {
-  // Thực hiện xóa dữ liệu ở đây
-  
-  // Reset checkbox và nút
-  dangerCheckbox.checked = false;
-  deleteBtn.disabled = true;
+// Hàm xóa dữ liệu
+async function deleteAllData() {
+    try {
+        const response = await fetch('../api/jar/delete_all_data.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        const result = await response.json();
+        
+        if (result.success) {
+            alert(result.message);
+            // Reset checkbox và nút
+            dangerCheckbox.checked = false;
+            deleteBtn.disabled = true;
+            // Refresh trang để hiển thị dữ liệu mới
+            window.location.reload();
+        } else {
+            alert('Lỗi: ' + result.message);
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Có lỗi xảy ra khi xóa dữ liệu');
+    }
 }
 
