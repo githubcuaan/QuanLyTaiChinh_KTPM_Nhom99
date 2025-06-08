@@ -1,3 +1,65 @@
+// Hàm format số tiền
+function formatMoney(amount) {
+    return amount.toLocaleString('vi-VN') + ' đ';
+}
+
+// Hàm cập nhật dữ liệu cho biểu đồ
+async function updateDashboardData() {
+    try {
+        const response = await fetch('../api/get_dashboard_data.php');
+        const data = await response.json();
+
+        if (data.error) {
+            console.error('Error:', data.error);
+            return;
+        }
+
+        // Cập nhật tổng số dư
+        document.querySelector('.total .card:nth-child(1) h2').textContent = formatMoney(data.total_balance);
+        
+        // Cập nhật tổng thu nhập
+        document.querySelector('.total .card:nth-child(2) h2').textContent = formatMoney(data.total_income);
+        
+        // Cập nhật tổng chi tiêu
+        document.querySelector('.total .card:nth-child(3) h2').textContent = formatMoney(data.total_expense);
+
+        // Cập nhật dữ liệu cho biểu đồ tròn
+        const jarData = {
+            labels: data.jar_balances.map(jar => jar.name),
+            data: data.jar_balances.map(jar => jar.percentage || 0),
+            amounts: data.jar_balances.map(jar => jar.balance || 0),
+            colors: [
+                '#FF6384', // Thiết Yếu - Hồng
+                '#36A2EB', // Tự Do Tài Chính - Xanh dương
+                '#FFCE56', // Giáo Dục - Vàng
+                '#4BC0C0', // Hưởng Thụ - Xanh ngọc
+                '#9966FF', // Thiện Tâm - Tím
+                '#FF9F40'  // Tiết Kiệm - Cam
+            ]
+        };
+
+        // Cập nhật biểu đồ tròn
+        pieChart.data.datasets[0].data = jarData.data;
+        pieChart.update();
+
+        // Cập nhật biểu đồ cột
+        barChart.data.datasets[0].data = [data.total_income, data.total_expense];
+        barChart.update();
+
+        // Cập nhật thông tin 6 hũ
+        const jarElements = document.querySelectorAll('.jar');
+        data.jar_balances.forEach((jar, index) => {
+            if (jarElements[index]) {
+                jarElements[index].querySelector('strong').textContent = formatMoney(jar.balance || 0);
+                jarElements[index].querySelector('span').textContent = (jar.percentage || 0) + '%';
+            }
+        });
+
+    } catch (error) {
+        console.error('Error fetching dashboard data:', error);
+    }
+}
+
 // Dữ liệu mẫu cho biểu đồ
 const jarData = {
     labels: ['Thiết Yếu', 'Tự Do Tài Chính', 'Giáo Dục', 'Hưởng Thụ', 'Thiện Tâm', 'Tiết Kiệm'],
@@ -70,7 +132,7 @@ const pieChart = new Chart(ctx, {
                         const amount = jarData.amounts[context.dataIndex];
                         return [
                             `${label}: ${value}%`,
-                            `Số tiền: ${amount.toLocaleString('vi-VN')} đ`
+                            `Số tiền: ${formatMoney(amount)}`
                         ];
                     }
                 }
@@ -131,7 +193,7 @@ const barChart = new Chart(barCtx,
                     callbacks: {
                         label: function(context) {
                             const value = context.raw || 0;
-                            return `${value.toLocaleString('vi-VN')} đ`;
+                            return formatMoney(value);
                         }
                     }
                 }
@@ -141,7 +203,7 @@ const barChart = new Chart(barCtx,
                     beginAtZero: true,
                     ticks: {
                         callback: function(value) {
-                            return value.toLocaleString('vi-VN') + ' đ';
+                            return formatMoney(value);
                         }
                     }
                 }
@@ -152,3 +214,9 @@ const barChart = new Chart(barCtx,
             }
         }
     }); 
+
+// Cập nhật dữ liệu khi trang được tải
+document.addEventListener('DOMContentLoaded', updateDashboardData);
+
+// Cập nhật dữ liệu mỗi 30 giây
+setInterval(updateDashboardData, 30000); 
