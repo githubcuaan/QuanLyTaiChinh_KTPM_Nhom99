@@ -1,3 +1,4 @@
+// 1. Các hàm để hiển thị modalal
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
     console.log('DOM loaded, initializing income modal functionality...');
@@ -209,7 +210,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Function to edit income row
+// 2. các hàm liên quan đén CRUD
+// Hàm để sửa thông tin ở giao diện bảngbảng
 async function editIncomeRow(button) {
     const row = button.closest('tr');
     const cells = row.cells;
