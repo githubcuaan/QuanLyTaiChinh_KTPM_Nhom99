@@ -11,6 +11,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const addIncomeBtn = document.querySelector('.thunhap-add-btn');
     const cancelEditIncomeBtn = document.getElementById('cancel-edit-income');
     const saveEditIncomeBtn = document.getElementById('save-edit-income');
+    window.incomeTable = document.querySelector('.thunhap-table tbody');
+
     // Get form elements
     const incomeDate = document.getElementById('income-date');
     const incomeAmount = document.getElementById('income-amount');
@@ -227,7 +229,6 @@ async function loadIncomes() {
 
         if(data.success) {
             // Xóa nội dung cũ
-            const incomeTable = document.querySelector('.thunhap-table tbody');
             incomeTable.innerHTML = '';
             
             // Thêm data mới
@@ -243,7 +244,7 @@ async function loadIncomes() {
                     </td>    
                 `;
                 incomeTable.appendChild(row);
-            });
+            }); 
         } else {
             console.error('Error loading income: ', data.message);
         }
