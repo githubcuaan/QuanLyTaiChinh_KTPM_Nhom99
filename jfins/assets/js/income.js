@@ -126,44 +126,73 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Handle save button for editing income
-    saveEditIncomeBtn.addEventListener('click', () => {
+    saveEditIncomeBtn.addEventListener('click', async () => {
         // Validate form
         if (!editIncomeDate.value || !editIncomeAmount.value || !editIncomeDescription.value) {
             alert('Vui lòng điền đầy đủ thông tin!');
             return;
         }
 
-        // Format the date
-        const date = new Date(editIncomeDate.value);
-        const formattedDate = date.toLocaleDateString('vi-VN');
+        try {
+            const currentRow = document.querySelector('.thunhap-table tbody tr.editing');
+            if (!currentRow) {
+                alert('Không tìm thấy dữ liệu cần sửa!');
+                return;
+            }
 
-        // Format the amount
-        const amount = parseFloat(editIncomeAmount.value).toLocaleString('vi-VN') + ' đ';
+            const incomeId = currentRow.getAttribute('data-income-id');
+            if (!incomeId) {
+                alert('Có lỗi xảy ra: Không tìm thấy ID của thu nhập');
+                return;
+            }
 
-        // Update the row
-        const currentRow = document.querySelector('.thunhap-table tbody tr.editing');
-        if (currentRow) {
-            currentRow.innerHTML = `
-                <td>${formattedDate}</td>
-                <td>${editIncomeDescription.value}</td>
-                <td>${amount}</td>
-                <td>
-                    <button id="income-edit-btn" class="thunhap-action-btn" onclick="editIncomeRow(this)">✏️</button>
-                    <button id="income-delete-btn" class="thunhap-action-btn" onclick="deleteIncomeRow(this)">🗑️</button>
-                </td>
-            `;
-            currentRow.classList.remove('editing');
+            console.log('Sending update request with income_id:', incomeId);
+            const response = await fetch('/QuanLyTaiChinh_KTPM_Nhom99/jfins/api/income/edit_income.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    income_id: incomeId,
+                    date: editIncomeDate.value,
+                    amount: editIncomeAmount.value,
+                    description: editIncomeDescription.value
+                })
+            });
+
+            const data = await response.json();
+            console.log('Update response:', data);
+
+            if (data.success) {
+                // Format the date
+                const date = new Date(editIncomeDate.value);
+                const formattedDate = date.toLocaleDateString('vi-VN');
+
+                // Format the amount
+                const amount = parseFloat(editIncomeAmount.value).toLocaleString('vi-VN') + ' đ';
+
+                // Update the row
+                currentRow.innerHTML = `
+                    <td>${formattedDate}</td>
+                    <td>${editIncomeDescription.value}</td>
+                    <td>${amount}</td>
+                    <td>
+                        <button class="thunhap-action-btn" onclick="editIncomeRow(this)">✏️</button>
+                        <button class="thunhap-action-btn" onclick="deleteIncomeRow(this)">🗑️</button>
+                    </td>
+                `;
+                currentRow.classList.remove('editing');
+
+                // Hide modal
+                hideModal(incomeEditModal);
+                alert('Cập nhật thu nhập thành công');
+            } else {
+                alert(data.message || 'Có lỗi xảy ra khi cập nhật thu nhập');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Có lỗi xảy ra, xin vui lòng thử lại');
         }
-
-        // Hide modal
-        hideModal(incomeEditModal);
-
-        // TODO: Add actual data saving functionality here
-        console.log('Income updated:', {
-            date: editIncomeDate.value,
-            amount: editIncomeAmount.value,
-            description: editIncomeDescription.value
-        });
     });
 
     // Add click event listeners to existing edit and delete buttons
@@ -181,10 +210,17 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Function to edit income row
-function editIncomeRow(button) {
+async function editIncomeRow(button) {
     const row = button.closest('tr');
     const cells = row.cells;
+    const incomeId = row.getAttribute('data-income-id');
     
+    if (!incomeId) {
+        console.error('No income_id found on row');
+        alert('Có lỗi xảy ra: Không tìm thấy ID của thu nhập');
+        return;
+    }
+
     // Get current values
     const date = cells[0].textContent;
     const description = cells[1].textContent;
@@ -202,7 +238,7 @@ function editIncomeRow(button) {
     editAmount.value = amount;
     editDescription.value = description;
 
-    // Mark row as being edited
+    // Store the row for later use
     row.classList.add('editing');
 
     // Show edit modal
@@ -213,10 +249,40 @@ function editIncomeRow(button) {
 }
 
 // Function to delete income row
-function deleteIncomeRow(button) {
+async function deleteIncomeRow(button) {
     if (confirm("Bạn có chắc muốn xóa mục thu nhập này không?")) {
         const row = button.closest('tr');
-        row.remove();
+        const incomeId = row.getAttribute('data-income-id');
+        
+        if (!incomeId) {
+            console.error('No income_id found on row');
+            alert('Có lỗi xảy ra: Không tìm thấy ID của thu nhập');
+            return;
+        }
+
+        try {
+            const response = await fetch('/QuanLyTaiChinh_KTPM_Nhom99/jfins/api/income/delete_income.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    income_id: incomeId
+                })
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                row.remove();
+                alert('Xóa thu nhập thành công');
+            } else {
+                alert(data.message || 'Có lỗi xảy ra khi xóa thu nhập');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Có lỗi xảy ra, xin vui lòng thử lại');
+        }
     }
 }
 
@@ -234,17 +300,18 @@ async function loadIncomes() {
             // Thêm data mới
             data.data.forEach(income => {
                 const row = document.createElement('tr');
+                row.setAttribute('data-income-id', income.income_id);
                 row.innerHTML = `
                     <td>${formatDate(income.income_date)}</td>
                     <td>${income.description}</td>
                     <td>${formatMoney(income.amount)}</td>
                     <td>
-                        <button class="thunhap-action-btn" onclick="editIncome(${income.income_id})">✏️</button>
-                        <button class="thunhap-action-btn" onclick="deleteIncome(${income.income_id})">🗑️</button>
+                        <button class="thunhap-action-btn" onclick="editIncomeRow(this)">✏️</button>
+                        <button class="thunhap-action-btn" onclick="deleteIncomeRow(this)">🗑️</button>
                     </td>    
                 `;
                 incomeTable.appendChild(row);
-            }); 
+            });
         } else {
             console.error('Error loading income: ', data.message);
         }
