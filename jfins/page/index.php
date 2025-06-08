@@ -250,10 +250,10 @@
         <hr>
         <div class="container-chitieu">
             <div class="top-bar">
-                <div class="pagination">
+<!--                 <div class="pagination">
                     <button onclick="prevPage()">&larr;</button>
                     <span>Trang 1/2</span>
-                </div>
+                </div> -->
                 <div class="filter-buttons">
                     <button class="active">Tháng này</button>
                     <button>Quý này</button>
