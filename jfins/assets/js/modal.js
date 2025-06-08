@@ -131,12 +131,18 @@ const deleteAllBtn = document.querySelector('.delete-btn:enabled'); // Nút xóa
 
 // Hàm mở modal xác nhận xóa
 function openDeleteConfirmModal() {
+  deleteConfirmModal.style.display = 'block';
+  // Force a reflow
+  deleteConfirmModal.offsetHeight;
   deleteConfirmModal.classList.add('show');
 }
 
 // Hàm đóng modal xác nhận xóa
 function closeDeleteConfirmModal() {
   deleteConfirmModal.classList.remove('show');
+  setTimeout(() => {
+    deleteConfirmModal.style.display = 'none';
+  }, 300);
   confirmDeleteInput.value = '';
   confirmDeleteBtn.disabled = true;
 }
