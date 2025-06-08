@@ -482,6 +482,7 @@ async function loadExpenses() {
             data.data.forEach(expense => {
                 const row = document.createElement('tr');
                 row.setAttribute('data-expense-id', expense.expense_id);
+                row.setAttribute('data-date', expense.expense_date);
                 row.innerHTML = `
                     <td>${formatDate(expense.expense_date)}</td>
                     <td class="category">
@@ -514,12 +515,145 @@ async function loadExpenses() {
                     }
                 });
             }
+
+            // Thêm sự kiện lọc theo ngày
+            const filterButtons = document.querySelectorAll('.filter-buttons button');
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const filterType = this.textContent.trim();
+                    filterExpensesByDate(filterType);
+                });
+            });
         } else {
             console.error('Error loading expenses: ', data.message);
         }
     } catch (error) {
         console.error('Error loading expenses: ', error);
     }
+}
+
+// Hàm lọc chi tiêu theo ngày
+function filterExpensesByDate(filterType) {
+    const rows = expenseTable.getElementsByTagName('tr');
+    const today = new Date();
+    let startDate, endDate;
+
+    switch(filterType) {
+        case 'Tháng này':
+            startDate = new Date(today.getFullYear(), today.getMonth(), 1);
+            endDate = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+            break;
+        case 'Quý này':
+            const quarter = Math.floor(today.getMonth() / 3);
+            startDate = new Date(today.getFullYear(), quarter * 3, 1);
+            endDate = new Date(today.getFullYear(), (quarter + 1) * 3, 0);
+            break;
+        case 'Năm nay':
+            startDate = new Date(today.getFullYear(), 0, 1);
+            endDate = new Date(today.getFullYear(), 11, 31);
+            break;
+        case 'Tùy chỉnh':
+            // Hiển thị modal chọn ngày
+            showDateRangeModal('expense');
+            return;
+        default:
+            // Nếu không có filter nào được chọn, hiển thị tất cả
+            for (let row of rows) {
+                row.style.display = '';
+            }
+            return;
+    }
+
+    // Lọc các hàng theo khoảng thời gian
+    for (let row of rows) {
+        const dateStr = row.getAttribute('data-date');
+        if (!dateStr) continue;
+
+        const rowDate = new Date(dateStr);
+        if (rowDate >= startDate && rowDate <= endDate) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
+    }
+}
+
+// Hàm hiển thị modal chọn khoảng thời gian
+function showDateRangeModal(type) {
+    const modal = document.createElement('div');
+    modal.className = 'modal';
+    modal.innerHTML = `
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Chọn khoảng thời gian</h2>
+            <div class="date-range-inputs">
+                <div>
+                    <label for="start-date">Từ ngày:</label>
+                    <input type="date" id="start-date" required>
+                </div>
+                <div>
+                    <label for="end-date">Đến ngày:</label>
+                    <input type="date" id="end-date" required>
+                </div>
+            </div>
+            <div class="form-actions">
+                <button type="button" class="btn btn-secondary" onclick="this.closest('.modal').remove()">Hủy</button>
+                <button type="button" class="btn btn-primary" onclick="applyDateRange('${type}')">Áp dụng</button>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(modal);
+
+    // Hiển thị modal
+    modal.style.display = 'block';
+    setTimeout(() => modal.classList.add('show'), 10);
+
+    // Xử lý đóng modal
+    const closeBtn = modal.querySelector('.close');
+    closeBtn.onclick = function() {
+        modal.classList.remove('show');
+        setTimeout(() => modal.remove(), 300);
+    };
+}
+
+// Hàm áp dụng khoảng thời gian đã chọn
+function applyDateRange(type) {
+    const startDate = new Date(document.getElementById('start-date').value);
+    const endDate = new Date(document.getElementById('end-date').value);
+    const table = type === 'expense' ? expenseTable : incomeTable;
+
+    if (!startDate || !endDate) {
+        alert('Vui lòng chọn đầy đủ ngày bắt đầu và kết thúc');
+        return;
+    }
+
+    if (startDate > endDate) {
+        alert('Ngày bắt đầu phải nhỏ hơn hoặc bằng ngày kết thúc');
+        return;
+    }
+
+    const rows = table.getElementsByTagName('tr');
+    for (let row of rows) {
+        const dateStr = row.getAttribute('data-date');
+        if (!dateStr) continue;
+
+        const rowDate = new Date(dateStr);
+        if (rowDate >= startDate && rowDate <= endDate) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
+    }
+
+    // Đóng modal
+    const modal = document.querySelector('.modal');
+    modal.classList.remove('show');
+    setTimeout(() => modal.remove(), 300);
 }
 
 // Hàm format ngày tháng

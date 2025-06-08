@@ -306,6 +306,7 @@ async function loadIncomes() {
             data.data.forEach(income => {
                 const row = document.createElement('tr');
                 row.setAttribute('data-income-id', income.income_id);
+                row.setAttribute('data-date', income.income_date);
                 row.innerHTML = `
                     <td>${formatDate(income.income_date)}</td>
                     <td>${income.description}</td>
@@ -335,11 +336,71 @@ async function loadIncomes() {
                     }
                 });
             }
+
+            // Thêm sự kiện lọc theo ngày
+            const filterButtons = document.querySelectorAll('.thunhap-filter-bar button');
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const filterType = this.textContent.trim();
+                    filterIncomesByDate(filterType);
+                });
+            });
         } else {
             console.error('Error loading income: ', data.message);
         }
     } catch (error) {
         console.error('Error loading income: ', error);
+    }
+}
+
+// Hàm lọc thu nhập theo ngày
+function filterIncomesByDate(filterType) {
+    const rows = incomeTable.getElementsByTagName('tr');
+    const today = new Date();
+    let startDate, endDate;
+
+    switch(filterType) {
+        case 'Tháng này':
+            startDate = new Date(today.getFullYear(), today.getMonth(), 1);
+            endDate = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+            break;
+        case 'Quý này':
+            const quarter = Math.floor(today.getMonth() / 3);
+            startDate = new Date(today.getFullYear(), quarter * 3, 1);
+            endDate = new Date(today.getFullYear(), (quarter + 1) * 3, 0);
+            break;
+        case 'Năm nay':
+            startDate = new Date(today.getFullYear(), 0, 1);
+            endDate = new Date(today.getFullYear(), 11, 31);
+            break;
+        case 'Tùy chỉnh':
+            // Hiển thị modal chọn ngày
+            showDateRangeModal('income');
+            return;
+        default:
+            // Nếu không có filter nào được chọn, hiển thị tất cả
+            for (let row of rows) {
+                row.style.display = '';
+            }
+            return;
+    }
+
+    // Lọc các hàng theo khoảng thời gian
+    for (let row of rows) {
+        const dateStr = row.getAttribute('data-date');
+        if (!dateStr) continue;
+
+        const rowDate = new Date(dateStr);
+        if (rowDate >= startDate && rowDate <= endDate) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
     }
 }
 
