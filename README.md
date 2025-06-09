@@ -7,10 +7,10 @@
 
 Dự án được thực hiện bởi các thành viên:
 
--🐶Phạm Lê Đình An
--👴 Hà Lê Quang Minh
--👴Nguyễn Duy Anh Tuấn
--👴Nguyễn Đức Tuấn
+- 🐶Phạm Lê Đình An
+- 👴 Hà Lê Quang Minh
+- 👴Nguyễn Duy Anh Tuấn
+- 👴Nguyễn Đức Tuấn
 
 ## 📚 Giới thiệu: Phương pháp 6 Hũ
 
@@ -63,74 +63,7 @@ Dự án được xây dựng trên kiến trúc Client-Server vững chắc:
 * **Backend:**
     * **Ngôn ngữ:** PHP
     * **Cơ sở dữ liệu:** MySQL
-    * **Mô tả:** Xử lý toàn bộ logic nghiệp vụ, quản lý phiên làm việc, tương tác với cơ sở dữ liệu thông qua PDO để tăng cường bảo mật.
-
-* **Frontend:**
-    * **Ngôn ngữ:** HTML, CSS, JavaScript (ES6+)
-    * **Thư viện:** Chart.js để vẽ các biểu đồ tài chính.
-    * **Tương tác:** Sử dụng Fetch API (AJAX) để giao tiếp với Backend, mang lại trải nghiệm mượt mà không cần tải lại trang.
-
----
-
-## 🗂️ Cấu trúc thư mục
-
-Cấu trúc thư mục được tổ chức một cách rõ ràng và khoa học:
-```
-QuanLyTaiChinh_KTPM_Nhom99-main/
-└── jfins/
-├── api/                <- Chứa các file PHP xử lý logic (backend)
-│   ├── auth/           # Xác thực người dùng
-│   ├── expense/        # Xử lý chi tiêu
-│   ├── income/         # Xử lý thu nhập
-│   └── jar/            # Xử lý liên quan đến các hũ
-├── assets/             <- Chứa tài nguyên tĩnh
-│   ├── css/            # Các file CSS
-│   ├── js/             # Các file JavaScript
-│   └── icon/           # Các icon
-├── config/             <- Chứa file kết nối CSDL
-│   └── db_connect.php
-├── page/               <- Chứa các trang chính của ứng dụng
-│   ├── auth/
-│   │   └── auth.php    <- Trang đăng nhập/đăng ký
-│   └── index.php       <- Trang tổng quan chính
-└── sql/
-└── create_database.sql <- File mã lệnh để tạo CSDL
-```
----
-## ⚙️ Hướng dẫn cài đặt và chạy dự án (Local - XAMPP)
-
-Để chạy dự án trên máy tính của bạn, hãy làm theo các bước sau:
-
-1.  **Cài đặt XAMPP:**
-    * Tải và cài đặt phiên bản XAMPP mới nhất có chứa PHP và MySQL.
-
-2.  **Sao chép dự án:**
-    * Sao chép thư mục `QuanLyTaiChinh_KTPM_Nhom99-main` vào thư mục `htdocs` của XAMPP (Thường là `C:\xampp\htdocs`).
-
-3.  **Khởi động XAMPP:**
-    * Mở XAMPP Control Panel và nhấn **Start** cho 2 module: **Apache** và **MySQL**.
-
-4.  **Tạo Cơ sở dữ liệu:**
-    * Mở trình duyệt và truy cập `http://localhost/phpmyadmin/`.
-    * Tạo một database mới với tên là `jfins` và mã hóa (collation) là `utf8mb4_unicode_ci`.
-
-5.  **Import Dữ liệu:**
-    * Trong phpMyAdmin, chọn database `jfins` vừa tạo.
-    * Vào tab `Import`, chọn file `create_database.sql` từ thư mục `jfins/sql/` của dự án.
-    * Nhấn **Go** để thực thi. Quá trình này sẽ tạo ra các bảng và chèn dữ liệu ban đầu cho các hũ.
-
-6.  **Chạy ứng dụng:**
-    * Mở trình duyệt và truy cập vào địa chỉ:
-        `http://localhost/QuanLyTaiChinh_KTPM_Nhom99-main/jfins/page/auth/auth.php`
-    * Bây giờ bạn có thể đăng ký tài khoản và bắt đầu sử dụng ứng dụng!
-
----
-
-## 📬 Liên hệ
-
-Nếu bạn có bất kỳ câu hỏi, góp ý hoặc muốn hợp tác phát triển dự án, vui lòng liên hệ qua:
-
-- 📧 Email: nhom99@gmail.com
+    * **Mô tả:** Xử lý toàn bộ logic nghiệp vụ, quản lý phiên làm việc, tương tác với cơ sở dữ liệu th0989231425 
 
 ---
 
