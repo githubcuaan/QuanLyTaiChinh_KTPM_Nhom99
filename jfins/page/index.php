@@ -92,6 +92,11 @@
             <button>Quý này</button>
             <button>Năm nay</button>
             <button>Tùy chỉnh</button>
+            <div class="date-range" style="display: none; margin-top: 10px;">
+              <input type="date" id="start-date" class="date-input">
+              <span>đến</span>
+              <input type="date" id="end-date" class="date-input">
+            </div>
           </div>
         </div>
 

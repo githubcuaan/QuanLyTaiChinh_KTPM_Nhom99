@@ -3,10 +3,92 @@ function formatMoney(amount) {
     return amount.toLocaleString('vi-VN') + ' đ';
 }
 
+// Hàm lấy giá trị ngày từ input
+function getDateRange() {
+    const startDate = document.getElementById('start-date').value;
+    const endDate = document.getElementById('end-date').value;
+    return { startDate, endDate };
+}
+
+// Hàm hiển thị modal chọn khoảng thời gian
+function showDateRangeModal() {
+    const modal = document.createElement('div');
+    modal.className = 'modal';
+    modal.innerHTML = `
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Chọn khoảng thời gian</h2>
+            <div class="date-range-inputs">
+                <div>
+                    <label for="start-date">Từ ngày:</label>
+                    <input type="date" id="start-date" required>
+                </div>
+                <div>
+                    <label for="end-date">Đến ngày:</label>
+                    <input type="date" id="end-date" required>
+                </div>
+            </div>
+            <div class="form-actions">
+                <button type="button" class="btn btn-secondary" onclick="this.closest('.modal').remove()">Hủy</button>
+                <button type="button" class="btn btn-primary" onclick="applyDateRange()">Áp dụng</button>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(modal);
+
+    // Hiển thị modal
+    modal.style.display = 'block';
+    setTimeout(() => modal.classList.add('show'), 10);
+
+    // Xử lý đóng modal
+    const closeBtn = modal.querySelector('.close');
+    closeBtn.onclick = function() {
+        modal.classList.remove('show');
+        setTimeout(() => modal.remove(), 300);
+    };
+
+    // Set default values
+    const today = new Date();
+    const firstDay = new Date(today.getFullYear(), today.getMonth(), 1);
+    const lastDay = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+    
+    modal.querySelector('#start-date').value = firstDay.toISOString().split('T')[0];
+    modal.querySelector('#end-date').value = lastDay.toISOString().split('T')[0];
+}
+
+// Hàm áp dụng khoảng thời gian đã chọn
+function applyDateRange() {
+    const startDate = document.getElementById('start-date').value;
+    const endDate = document.getElementById('end-date').value;
+
+    if (!startDate || !endDate) {
+        alert('Vui lòng chọn đầy đủ ngày bắt đầu và kết thúc');
+        return;
+    }
+
+    if (new Date(startDate) > new Date(endDate)) {
+        alert('Ngày bắt đầu phải nhỏ hơn hoặc bằng ngày kết thúc');
+        return;
+    }
+
+    // Đóng modal
+    const modal = document.querySelector('.modal');
+    modal.classList.remove('show');
+    setTimeout(() => modal.remove(), 300);
+
+    // Cập nhật dữ liệu
+    updateDashboardData();
+}
+
 // Hàm cập nhật dữ liệu cho biểu đồ
 async function updateDashboardData() {
     try {
-        const response = await fetch('../api/get_dashboard_data.php');
+        const { startDate, endDate } = getDateRange();
+        const queryParams = new URLSearchParams();
+        if (startDate) queryParams.append('start_date', startDate);
+        if (endDate) queryParams.append('end_date', endDate);
+
+        const response = await fetch(`../api/get_dashboard_data.php?${queryParams.toString()}`);
         const data = await response.json();
 
         if (data.error) {
@@ -258,8 +340,82 @@ const barChart = new Chart(barCtx,
         }
     }); 
 
+// Hàm xử lý filter buttons
+function setupFilterButtons() {
+    const filterButtons = document.querySelectorAll('.filter button');
+    
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Remove active class from all buttons
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            // Add active class to clicked button
+            this.classList.add('active');
+            
+            // Set date range based on button
+            const today = new Date();
+            let startDate, endDate;
+            
+            switch(this.textContent) {
+                case 'Tháng này':
+                    startDate = new Date(today.getFullYear(), today.getMonth(), 1);
+                    endDate = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+                    break;
+                case 'Quý này':
+                    const quarter = Math.floor(today.getMonth() / 3);
+                    startDate = new Date(today.getFullYear(), quarter * 3, 1);
+                    endDate = new Date(today.getFullYear(), (quarter + 1) * 3, 0);
+                    break;
+                case 'Năm nay':
+                    startDate = new Date(today.getFullYear(), 0, 1);
+                    endDate = new Date(today.getFullYear(), 11, 31);
+                    break;
+                case 'Tùy chỉnh':
+                    showDateRangeModal();
+                    return;
+            }
+            
+            if (startDate && endDate) {
+                document.getElementById('start-date').value = startDate.toISOString().split('T')[0];
+                document.getElementById('end-date').value = endDate.toISOString().split('T')[0];
+                updateDashboardData();
+            }
+        });
+    });
+}
+
 // Cập nhật dữ liệu khi trang được tải
-document.addEventListener('DOMContentLoaded', updateDashboardData);
+document.addEventListener('DOMContentLoaded', function() {
+    // Set default date range to current month
+    const today = new Date();
+    const firstDay = new Date(today.getFullYear(), today.getMonth(), 1);
+    const lastDay = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+    
+    // Create hidden date inputs if they don't exist
+    if (!document.getElementById('start-date')) {
+        const startDateInput = document.createElement('input');
+        startDateInput.type = 'date';
+        startDateInput.id = 'start-date';
+        startDateInput.style.display = 'none';
+        document.body.appendChild(startDateInput);
+    }
+    
+    if (!document.getElementById('end-date')) {
+        const endDateInput = document.createElement('input');
+        endDateInput.type = 'date';
+        endDateInput.id = 'end-date';
+        endDateInput.style.display = 'none';
+        document.body.appendChild(endDateInput);
+    }
+    
+    document.getElementById('start-date').value = firstDay.toISOString().split('T')[0];
+    document.getElementById('end-date').value = lastDay.toISOString().split('T')[0];
+    
+    // Setup filter buttons
+    setupFilterButtons();
+    
+    // Initial data load
+    updateDashboardData();
+});
 
 // Cập nhật dữ liệu mỗi 30 giây
 setInterval(updateDashboardData, 30000); 

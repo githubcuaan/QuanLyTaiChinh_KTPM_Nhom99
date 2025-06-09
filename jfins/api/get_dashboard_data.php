@@ -11,25 +11,35 @@ if (!isset($_SESSION['user_id'])) {
 
 $user_id = $_SESSION['user_id'];
 
+// Lấy tham số ngày từ request
+$start_date = isset($_GET['start_date']) ? $_GET['start_date'] : date('Y-m-01');
+$end_date = isset($_GET['end_date']) ? $_GET['end_date'] : date('Y-m-t');
+
 try {
     // Lấy tổng thu nhập
     $income_query = "SELECT COALESCE(SUM(amount), 0) as total_income 
                     FROM incomes 
                     WHERE user_id = :user_id 
-                    AND MONTH(income_date) = MONTH(CURRENT_DATE())
-                    AND YEAR(income_date) = YEAR(CURRENT_DATE())";
+                    AND income_date BETWEEN :start_date AND :end_date";
     $income_stmt = $conn->prepare($income_query);
-    $income_stmt->execute(['user_id' => $user_id]);
+    $income_stmt->execute([
+        'user_id' => $user_id,
+        'start_date' => $start_date,
+        'end_date' => $end_date
+    ]);
     $total_income = $income_stmt->fetch()['total_income'];
 
     // Lấy tổng chi tiêu
     $expense_query = "SELECT COALESCE(SUM(amount), 0) as total_expense 
                      FROM expenses 
                      WHERE user_id = :user_id 
-                     AND MONTH(expense_date) = MONTH(CURRENT_DATE())
-                     AND YEAR(expense_date) = YEAR(CURRENT_DATE())";
+                     AND expense_date BETWEEN :start_date AND :end_date";
     $expense_stmt = $conn->prepare($expense_query);
-    $expense_stmt->execute(['user_id' => $user_id]);
+    $expense_stmt->execute([
+        'user_id' => $user_id,
+        'start_date' => $start_date,
+        'end_date' => $end_date
+    ]);
     $total_expense = $expense_stmt->fetch()['total_expense'];
 
     // Lấy số dư các hũ
@@ -47,12 +57,15 @@ try {
                             FROM jars j
                             LEFT JOIN expenses e ON j.jar_id = e.jar_id 
                             AND e.user_id = :user_id
-                            AND MONTH(e.expense_date) = MONTH(CURRENT_DATE())
-                            AND YEAR(e.expense_date) = YEAR(CURRENT_DATE())
+                            AND e.expense_date BETWEEN :start_date AND :end_date
                             GROUP BY j.jar_id
                             ORDER BY j.jar_id";
     $expense_by_jar_stmt = $conn->prepare($expense_by_jar_query);
-    $expense_by_jar_stmt->execute(['user_id' => $user_id]);
+    $expense_by_jar_stmt->execute([
+        'user_id' => $user_id,
+        'start_date' => $start_date,
+        'end_date' => $end_date
+    ]);
     $expense_by_jar = $expense_by_jar_stmt->fetchAll();
 
     // Tính tổng số dư
@@ -67,7 +80,11 @@ try {
         'total_income' => $total_income,
         'total_expense' => $total_expense,
         'jar_balances' => $jar_balances,
-        'expense_by_jar' => $expense_by_jar
+        'expense_by_jar' => $expense_by_jar,
+        'date_range' => [
+            'start_date' => $start_date,
+            'end_date' => $end_date
+        ]
     ];
 
     header('Content-Type: application/json');
