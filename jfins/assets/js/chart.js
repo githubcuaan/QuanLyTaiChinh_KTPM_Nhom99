@@ -39,7 +39,19 @@ async function updateDashboardData() {
         };
 
         // Cập nhật biểu đồ tròn
+        pieChart.data.labels = jarData.labels;
         pieChart.data.datasets[0].data = jarData.data;
+        pieChart.data.datasets[0].backgroundColor = jarData.colors;
+        pieChart.data.datasets[0].hoverBackgroundColor = jarData.colors.map(color => Chart.helpers.color(color).alpha(0.8).rgbString());
+        pieChart.options.plugins.tooltip.callbacks.label = function(context) {
+            const label = context.label || '';
+            const value = context.raw || 0;
+            const amount = jarData.amounts[context.dataIndex] || 0;
+            return [
+                `${label}: ${value}%`,
+                `Số dư: ${formatMoney(amount)}`
+            ];
+        };
         pieChart.update();
 
         // Cập nhật biểu đồ cột
@@ -160,10 +172,10 @@ const pieChart = new Chart(ctx, {
                     label: function(context) {
                         const label = context.label || '';
                         const value = context.raw || 0;
-                        const amount = jarData.amounts[context.dataIndex];
+                        const amount = jarData.amounts[context.dataIndex] || 0;
                         return [
                             `${label}: ${value}%`,
-                            `Số tiền: ${formatMoney(amount)}`
+                            `Số dư: ${formatMoney(amount)}`
                         ];
                     }
                 }
