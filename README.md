@@ -7,10 +7,10 @@
 
 Dự án được thực hiện bởi các thành viên:
 
--🐶Phạm Lê Đình An
--👴 Hà Lê Quang Minh
--👴Nguyễn Duy Anh Tuấn
--👴Nguyễn Đức Tuấn
+- 🐶Phạm Lê Đình An
+- 👴 Hà Lê Quang Minh
+- 👴Nguyễn Duy Anh Tuấn
+- 👴Nguyễn Đức Tuấn
 
 ## 📚 Giới thiệu: Phương pháp 6 Hũ
 
@@ -63,39 +63,34 @@ Dự án được xây dựng trên kiến trúc Client-Server vững chắc:
 * **Backend:**
     * **Ngôn ngữ:** PHP
     * **Cơ sở dữ liệu:** MySQL
-    * **Mô tả:** Xử lý toàn bộ logic nghiệp vụ, quản lý phiên làm việc, tương tác với cơ sở dữ liệu thông qua PDO để tăng cường bảo mật.
-
-* **Frontend:**
-    * **Ngôn ngữ:** HTML, CSS, JavaScript (ES6+)
-    * **Thư viện:** Chart.js để vẽ các biểu đồ tài chính.
-    * **Tương tác:** Sử dụng Fetch API (AJAX) để giao tiếp với Backend, mang lại trải nghiệm mượt mà không cần tải lại trang.
+    * **Mô tả:** Xử lý toàn bộ logic nghiệp vụ, quản lý phiên làm việc, tương tác với cơ sở dữ liệu th0989231425 
 
 ---
-
 ## 🗂️ Cấu trúc thư mục
 
 Cấu trúc thư mục được tổ chức một cách rõ ràng và khoa học:
 ```
 QuanLyTaiChinh_KTPM_Nhom99-main/
 └── jfins/
-├── api/                <- Chứa các file PHP xử lý logic (backend)
-│   ├── auth/           # Xác thực người dùng
-│   ├── expense/        # Xử lý chi tiêu
-│   ├── income/         # Xử lý thu nhập
-│   └── jar/            # Xử lý liên quan đến các hũ
-├── assets/             <- Chứa tài nguyên tĩnh
-│   ├── css/            # Các file CSS
-│   ├── js/             # Các file JavaScript
-│   └── icon/           # Các icon
-├── config/             <- Chứa file kết nối CSDL
-│   └── db_connect.php
-├── page/               <- Chứa các trang chính của ứng dụng
-│   ├── auth/
-│   │   └── auth.php    <- Trang đăng nhập/đăng ký
-│   └── index.php       <- Trang tổng quan chính
-└── sql/
-└── create_database.sql <- File mã lệnh để tạo CSDL
+    ├── api/                <- Chứa các file PHP xử lý logic (backend)
+    │   ├── auth/           # Xác thực người dùng
+    │   ├── expense/        # Xử lý chi tiêu
+    │   ├── income/         # Xử lý thu nhập
+    │   └── jar/            # Xử lý liên quan đến các hũ
+    ├── assets/             <- Chứa tài nguyên tĩnh
+    │   ├── css/            # Các file CSS
+    │   ├── js/             # Các file JavaScript
+    │   └── icon/           # Các icon
+    ├── config/             <- Chứa file kết nối CSDL
+    │   └── db_connect.php
+    ├── page/               <- Chứa các trang chính của ứng dụng
+    │   ├── auth/
+    │   │   └── auth.php    <- Trang đăng nhập/đăng ký
+    │   └── index.php       <- Trang tổng quan chính
+    └── sql/
+        └── create_database.sql <- File mã lệnh để tạo CSDL
 ```
+
 ---
 ## ⚙️ Hướng dẫn cài đặt và chạy dự án (Local - XAMPP)
 

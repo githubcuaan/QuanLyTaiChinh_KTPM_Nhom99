@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         try {
-            const response = await fetch('/QuanLyTaiChinh_KTPM_Nhom99/jfins/api/income/add_income.php', {
+            const response = await fetch('../../api/income/add_income.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             console.log('Sending update request with income_id:', incomeId);
-            const response = await fetch('/QuanLyTaiChinh_KTPM_Nhom99/jfins/api/income/edit_income.php', {
+            const response = await fetch('../../api/income/edit_income.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
