@@ -2,7 +2,7 @@
     // 1. Cấu hình thông tin kết nối
     $servername = "127.0.0.1";
     $username = "root";
-    $password = "";
+    $password = "YOUR_PW";
     $dbname = "jfins";
 
     //2. Tạo kết nối PDO
