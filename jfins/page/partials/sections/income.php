@@ -34,24 +34,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>09/04/2025</td>
-                  <td>Thưởng</td>
-                  <td>2.000.000 đ</td>
-                  <td>
-                    <button id="income-edit-btn" class="thunhap-action-btn">✏️</button>
-                    <button id="income-delete-btn" class="thunhap-action-btn">🗑️</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>08/04/2025</td>
-                  <td>Lương tháng 4</td>
-                  <td>600.000 đ</td>
-                  <td>
-                    <button id="income-edit-btn" class="thunhap-action-btn">✏️</button>
-                    <button id="income-delete-btn" class="thunhap-action-btn">🗑️</button>
-                  </td>
-                </tr>
+
               </tbody>
             </table>
           </div>
